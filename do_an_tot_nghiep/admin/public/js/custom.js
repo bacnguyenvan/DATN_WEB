@@ -24,4 +24,13 @@ $(document).ready(function(){
 			});
 	});
 	
+	$('.btn_add_dk').on('click',function(){
+		more_condition = $('.more_condition').html();
+		var number = $('.number_row').val();
+
+		if(parseInt(number) < 6){
+			$('.number_row').val(parseInt(number) + 1);
+			$('.list_condition').append(more_condition);
+		}
+	})
 })

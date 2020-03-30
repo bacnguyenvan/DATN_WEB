@@ -10,7 +10,6 @@
     <script type="text/javascript" src="<?php echo base_url() ?>admin/public/jquery-confirm/jquery-confirm.js "></script>
 	
 	<script type="text/javascript" src="<?php echo base_url() ?>admin/public/js/custom.js"></script>
-
 </body>
 
 </html>

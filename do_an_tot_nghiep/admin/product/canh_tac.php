@@ -2,6 +2,7 @@
     require_once  "../autoload/autoload.php";
     $active = 'rau'; // active 
     $css = true;
+    $js = true;
     $phase = 2;
     $categories = $db->fetchAll('loai_rau');
 
@@ -123,102 +124,48 @@
                     </div>
                 </div>
 
+                <input type="hidden" name="number_row" value="0" class="number_row">
                 <div class="row form-add" style="margin-left: 15%;margin-right: 15%;width:70%">
                     <div class="col-md-12">
-                        
+                        <h2 class="text-center" style="font-family: cursive;margin-bottom: 50px">ĐIỀU KIỆN CANH TÁC</h2>
+                        <div>
+                            <a href="javascript:void(0)" class="btn btn-success pull-right btn_add_dk">Thêm điều kiện</a>
+                        </div>
+                        <div class="clearfix" style="margin-bottom: 30px"></div>
                         <form action="" method="POST" enctype="multipart/form-data">
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Loại rau<span style="color: red">*</span></label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="category">
-                                        <option value=""> --Lựa chọn loại rau-- </option>
-                                        <?php 
-                                            foreach($categories as $item){ ?>
-
-                                                <option value="<?php echo $item['id'] ?>"><?php echo $item['name'] ?></option>
-
-                                            <?php } ?>
-
-                                        ?>
-                                        
-                                     </select>
-                                     <?php if(isset($errors['category'])) { ?>
-                                        <p class="text-danger">
-                                            <?php echo $errors['category'] ?>
-                                        </p>
-
-                                  <?php } ?>
+                            <div class="list_condition">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 col-form-label">
+                                        <input type="text" class="form-control" name="condition_name" placeholder="Nhập tên điều kiện">
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập điều kiện" name='condition'>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a href="" class="btn btn-primary">Xóa điều kiện</a>
+                                    </div>
                                 </div>
+
+
                             </div>
 
-							<div class="form-group row">
-						    	<label for="inputEmail3" class="col-sm-2 col-form-label">Tên <span style="color: red">*</span></label>
-							    <div class="col-sm-10">
-							      <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập tên" name='name'>
-
-                                  <?php 
-                                        if(isset($errors['name'])){ ?>
-                                            <p class="text-danger">
-                                                <?php echo $errors['name'] ?>
-                                            </p>
-                                        <?php } ?>
-
-
-                                   
-							    </div>
-							</div>
-
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Giá <span style="color: red">*</span></label>
-                                <div class="col-sm-10">
-                                  <input type="number" min="1" class="form-control" id="inputEmail3" placeholder="Nhập giá" name='price'>
-
-                                  <?php if(isset($errors['price'])) { ?>
-                                        <p class="text-danger">
-                                            <?php echo $errors['price'] ?>
-                                        </p>
-
-                                  <?php } ?>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Số lượng <span style="color: red">*</span></label>
-                                <div class="col-sm-10">
-                                  <input type="number" value="1" min="1"  class="form-control" id="inputEmail3" placeholder="Nhập số lượng" name='number'>
-
-                                  <?php if(isset($errors['number'])) { ?>
-                                        <p class="text-danger">
-                                            <?php echo $errors['number'] ?>
-                                        </p>
-
-                                  <?php } ?>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                
-                                <label class="col-sm-2 col-form-label">Hình ảnh giống rau <span style="color: red">*</span></label>
-                                <div class="col-sm-4">
-                                    <input type="file" name="images" class="form-control">
-                                    <?php if(isset($errors['image'])) { ?>
-                                        <p class="text-danger">
-                                            <?php echo $errors['image'] ?>
-                                        </p>
-
-                                  <?php } ?>
-                                </div>
-                            </div>
-
-                           
-                           
+						
                              <?php  require_once __DIR__. DIRECTORY_SEPARATOR."../message/message.php";  ?>
-						    <div class="form-group row">
-							    <div class="col-sm-12">
-							      <button type="submit" class="btn btn-primary submit-form" style="float: right">Lưu</button>
-							    </div>
-						    </div>
+						  
 						</form>
+                        <div class="more_condition" hidden>
+                            <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                    <input type="text" class="form-control" name="condition_name" placeholder="Nhập tên điều kiện">
+                                </div>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập điều kiện" name='condition'>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a href="" class="btn btn-primary">Xóa điều kiện</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
                 </div>
