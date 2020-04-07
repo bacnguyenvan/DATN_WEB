@@ -4,81 +4,6 @@
     $css = true;
     $categories = $db->fetchAll('loai_rau');
 
-   
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST')
-    {
-        
-        $data =
-        [
-            'name' => postInput('name'),
-            'slug' => changeTitle(postInput('name')),
-            'category_id' => postInput('category'),
-            'price' => postInput('price'),
-            'content' => postInput('content'),
-            'number' => postInput('number')
-        ];
-        $errors = [];
-        
-        if(postInput('name') == '')
-        {
-            $errors['name'] = 'Vui lòng nhập tên sản phẩm';
-        }
-
-        if(postInput('category') == '')
-        {
-            $errors['category'] = 'Vui lòng nhập loại danh mục';
-        }
-
-        if(postInput('price') == '')
-        {
-            $errors['price'] = 'Vui lòng nhập giá sản phẩm';
-        }
-        if(postInput('number') == '')
-        {
-            $errors['number'] = 'Vui lòng nhập số lượng';
-        }
-        
-        if($_FILES['images']['name'] == ''){
-            $errors['image'] = 'Vui lòng import hình';
-        }
-        
-       
-        if(empty($errors)){
-            //check exist
-            $checkNameExist = $db->fetchOne('products',"category_id = '".$data['category_id']."' AND name= '".$data['name']."' ");
-
-            if($checkNameExist){
-                $_SESSION['error'] = 'Product existed,please enter other name product';
-            }else{
-
-                if(isset($_FILES['images'])){
-                $file_name  = $_FILES['images']['name'];
-                $file_tmp   = $_FILES['images']['tmp_name'];
-                $file_type  = $_FILES['images']['type'];
-                $file_erro  = $_FILES['images']['error'];
-
-                    if($file_erro == 0){
-                        $part = IMAGE."products/";
-                        $data['thunbar'] = $file_name;
-                    }else{/*do nothing*/}
-               
-                }else{/*do nothing*/}
-            
-                $id_insert = $db->insertDB("products",$data);
-                if($id_insert){
-                    move_uploaded_file($file_tmp, $part.$file_name);
-
-                    $_SESSION['success'] = "Thêm mới thành công";
-                    redirectStyle('product');
-                }else{
-                    $_SESSION['error'] = "Thêm mới thất bại";
-                    redirectStyle('product');
-                }
-            }
-            
-        }
-    }
 
 ?>
 
@@ -128,25 +53,14 @@
                     <div class="col-md-12">
                         
                         <form action="show.php" method="post">
-                            <input type="hidden" autocomplete="off" class="form-control" name="text_qrcode" style="border-radius: 0px; " placeholder="Text..." value="<?php echo $_SESSION['id'] ?>" >
+                            <input type="hidden" autocomplete="off" class="form-control" name="text_qrcode" style="border-radius: 0px; " placeholder="Text..." value="<?php echo $_SESSION['rau_id'] ?>" >
                             <br>
-                            <input type="submit" class="btn btn-md btn-danger text-center" value="Tạo QR CODE">
+                            <div class="text-center">
+                                <input type="submit" class="btn btn-md btn-danger text-center" value="Tạo QR CODE">
+                            </div>
                         </form>
 
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            <div class="form-group row text-center">
-                                
-                                <!-- <a  href="" class="btn btn-primary">Tạo QR CODE</a> -->
-                            </div>
-                           
-                           
-                             <?php  require_once __DIR__. DIRECTORY_SEPARATOR."../message/message.php";  ?>
-						    <div class="form-group row">
-							    <div class="col-sm-12">
-							      <button type="submit" class="btn btn-primary submit-form" style="float: right">Lưu</button>
-							    </div>
-						    </div>
-						</form>
+                       
                     </div>
                     
                 </div>

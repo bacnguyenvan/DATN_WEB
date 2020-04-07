@@ -172,6 +172,7 @@
 			return mysqli_insert_id($this->connect);
 		}
 
+		
 		public function updateDB($table,$data,$conditional)
 		{
 			$sql = '';

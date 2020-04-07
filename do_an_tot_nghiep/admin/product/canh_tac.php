@@ -6,76 +6,55 @@
     $phase = 2;
     $categories = $db->fetchAll('loai_rau');
 
+    if(isset($_POST['number_row'])){
+        $number_row = $_POST['number_row'];
+    }else{
+        $number_row = 1;
+    }
+
     if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         
-        $data =
-        [
-            'name' => postInput('name'),
-            'slug' => changeTitle(postInput('name')),
-            'category_id' => postInput('category'),
-            'price' => postInput('price'),
-            'content' => postInput('content'),
-            'number' => postInput('number')
-        ];
+        
         $errors = [];
-        
-        if(postInput('name') == '')
-        {
-            $errors['name'] = 'Vui lòng nhập tên sản phẩm';
-        }
 
-        if(postInput('category') == '')
-        {
-            $errors['category'] = 'Vui lòng nhập loại danh mục';
-        }
-
-        if(postInput('price') == '')
-        {
-            $errors['price'] = 'Vui lòng nhập giá sản phẩm';
-        }
-        if(postInput('number') == '')
-        {
-            $errors['number'] = 'Vui lòng nhập số lượng';
-        }
-        
-        if($_FILES['images']['name'] == ''){
-            $errors['image'] = 'Vui lòng import hình';
-        }
-        
+        $inputs['condition_name'] = $_POST['condition_name'];
+        $inputs['condition'] = $_POST['condition'];
+        // foreach
+       for($i = 0 ; $i < count($inputs['condition_name']) ; $i++ ){
+            if( $inputs['condition_name'][$i] == '' ){
+                
+                $errors['condition_name'][$i] = 'Vui lòng nhập vào tên điều kiện';
+                
+            }
+            if( $inputs['condition'][$i] == '' ){
+                
+                $errors['condition'][$i] = 'Vui lòng nhập vào điều kiện';
+                
+            }
+       }
+       
+           
        
         if(empty($errors)){
-            //check exist
-            $checkNameExist = $db->fetchOne('products',"category_id = '".$data['category_id']."' AND name= '".$data['name']."' ");
-
-            if($checkNameExist){
-                $_SESSION['error'] = 'Product existed,please enter other name product';
-            }else{
-
-                if(isset($_FILES['images'])){
-                $file_name  = $_FILES['images']['name'];
-                $file_tmp   = $_FILES['images']['tmp_name'];
-                $file_type  = $_FILES['images']['type'];
-                $file_erro  = $_FILES['images']['error'];
-
-                    if($file_erro == 0){
-                        $part = IMAGE."products/";
-                        $data['thunbar'] = $file_name;
-                    }else{/*do nothing*/}
-               
-                }else{/*do nothing*/}
-            
-                $id_insert = $db->insertDB("products",$data);
-                if($id_insert){
-                    move_uploaded_file($file_tmp, $part.$file_name);
-
-                    $_SESSION['success'] = "Thêm mới thành công";
-                    redirectStyle('product');
-                }else{
-                    $_SESSION['error'] = "Thêm mới thất bại";
-                    redirectStyle('product');
-                }
+            for($i = 0 ; $i < count($inputs['condition_name']) ; $i++ ){
+                $data = [
+                    'rau_id' => $_SESSION['rau_id'],
+                    'ten_dieu_kien' => $inputs['condition_name'][$i],
+                    'dieu_kien' => $inputs['condition'][$i],
+                ];
+                $id_insert = $db->insertDB("dieu_kien_canh_tac",$data);
+                if($id_insert) break;
             }
+
+            if($id_insert){
+               $_SESSION['success'] = "Đã thêm điều kiện canh tác thành công";
+                redirectStyle('product/thu_hoach.php');
+            }else{
+                $_SESSION['error'] = "Thêm điều kiện canh tác thất bại";
+                redirectStyle('product/canh_tac.php');
+            }
+            
             
         }
     }
@@ -85,7 +64,7 @@
 <?php require_once "../header.php" ?>
     
         <!-- content -->
-        <div id="page-wrapper">
+        <div id="page-wrapper" style="margin-bottom: 30px">
 
             <div class="container-fluid">
 
@@ -124,45 +103,67 @@
                     </div>
                 </div>
 
-                <input type="hidden" name="number_row" value="0" class="number_row">
+                
                 <div class="row form-add" style="margin-left: 15%;margin-right: 15%;width:70%">
                     <div class="col-md-12">
                         <h2 class="text-center" style="font-family: cursive;margin-bottom: 50px">ĐIỀU KIỆN CANH TÁC</h2>
                         <div>
                             <a href="javascript:void(0)" class="btn btn-success pull-right btn_add_dk">Thêm điều kiện</a>
+
+                            <?php  require_once __DIR__. DIRECTORY_SEPARATOR."../message/message.php";  ?>
                         </div>
                         <div class="clearfix" style="margin-bottom: 30px"></div>
                         <form action="" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="number_row" value="<?php echo postInput('number_row')?postInput('number_row'):1 ?>" class="number_row">
                             <div class="list_condition">
+                                <?php for($i = 0; $i < $number_row ; $i++) { ?>
                                 <div class="form-group row">
                                     <div class="col-sm-3 col-form-label">
-                                        <input type="text" class="form-control" name="condition_name" placeholder="Nhập tên điều kiện">
+                                        <input type="text" class="form-control" name="condition_name[]" placeholder="Nhập tên điều kiện" <?php if(!empty($inputs['condition_name'][$i])){ ?> value="<?php echo $inputs['condition_name'][$i] ?>" <?php } ?> >
+                                        <?php 
+                                        if(isset($errors['condition_name'][$i])){ ?>
+                                            <p class="text-danger">
+                                                <?php echo $errors['condition_name'][$i] ?>
+                                            </p>
+                                        <?php } ?>
+                                        
                                     </div>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập điều kiện" name='condition'>
+                                        <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập điều kiện" name="condition[]" <?php if(!empty($inputs['condition'][$i])){ ?> value="<?php echo $inputs['condition'][$i] ?>" <?php } ?> >
+                                        <?php 
+                                        if(isset($errors['condition'][$i])){ ?>
+                                            <p class="text-danger">
+                                                <?php echo $errors['condition'][$i] ?>
+                                            </p>
+                                        <?php } ?>
                                     </div>
                                     <div class="col-sm-2">
-                                        <a href="" class="btn btn-primary">Xóa điều kiện</a>
+                                        <a href="javascript:void(0)" class="btn btn-primary delete_condition">Xóa điều kiện</a>
                                     </div>
+
                                 </div>
+                                <?php } ?>
 
 
                             </div>
+                            <div>
+                                <button class="btn btn-warning pull-right save_condition" style="padding:8px 25px">Next</button>
+                            </div>
 
 						
-                             <?php  require_once __DIR__. DIRECTORY_SEPARATOR."../message/message.php";  ?>
+                             
 						  
 						</form>
                         <div class="more_condition" hidden>
                             <div class="form-group row">
                                 <div class="col-sm-3 col-form-label">
-                                    <input type="text" class="form-control" name="condition_name" placeholder="Nhập tên điều kiện">
+                                    <input type="text" class="form-control" name="condition_name[]" placeholder="Nhập tên điều kiện">
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập điều kiện" name='condition'>
+                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập điều kiện" name='condition[]'>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a href="" class="btn btn-primary">Xóa điều kiện</a>
+                                    <a href="javascript:void(0)" class="btn btn-primary delete_condition">Xóa điều kiện</a>
                                 </div>
                             </div>
                         </div>

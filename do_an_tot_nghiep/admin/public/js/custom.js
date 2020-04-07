@@ -28,9 +28,21 @@ $(document).ready(function(){
 		more_condition = $('.more_condition').html();
 		var number = $('.number_row').val();
 
+		$('.save_condition').prop("disabled",false);
 		if(parseInt(number) < 6){
 			$('.number_row').val(parseInt(number) + 1);
 			$('.list_condition').append(more_condition);
+		}
+	});
+
+	$('.list_condition').on('click','.delete_condition',function(){
+		parents = $(this).parents('.form-group.row');
+		parents.remove();
+
+		var number = $('.number_row').val();
+		$('.number_row').val(parseInt(number) - 1);
+		if(parseInt(number) - 1 <= 0){
+			$('.save_condition').prop("disabled",true);
 		}
 	})
 })

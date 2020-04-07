@@ -79,8 +79,8 @@
                     move_uploaded_file($file_tmp, $part.$file_name);
 
                     $_SESSION['success'] = "Thêm mới thành công";
-                    $_SESSION['id'] = mysqli_insert_id($db->connect);
-                    redirectStyle('product/thu_hoach.php');
+                    $_SESSION['rau_id'] = mysqli_insert_id($db->connect);
+                    redirectStyle('product/canh_tac.php');
                 }else{
                     $_SESSION['error'] = "Thêm mới thất bại";
                     redirectStyle('product');
@@ -254,7 +254,7 @@
                              <?php  require_once __DIR__. DIRECTORY_SEPARATOR."../message/message.php";  ?>
 						    <div class="form-group row">
 							    <div class="col-sm-12">
-							      <button type="submit" class="btn btn-primary submit-form" style="float: right">Lưu</button>
+							      <button type="submit" class="btn btn-primary submit-form" style="float: right">Next</button>
 							    </div>
 						    </div>
 						</form>

@@ -12,7 +12,7 @@
             INNER JOIN loai_rau ON loai_rau.id = rau.loai_rau_id AND rau.deleted_at='0' ";
    
    
-    $products = $db->fetchJone('rau',$sql,$p,4,true);
+    $products = $db->fetchJone('rau',$sql,$p,5,true);
     
     $total_page = $products['page'];
     $total_product = count($db->fetchAll_condition('rau',"deleted_at=0"));
@@ -59,7 +59,7 @@
                             <!-- total user -->
                             <div class="">
                                 <h3>
-                                    <span style="text-decoration: underline;">Tổng sản phẩm:</span>
+                                    <span style="text-decoration: underline;">Tổng số cây:</span>
                                     <span> <?php echo $total_product?></span>
                                 </h3> 
                             </div>
@@ -92,8 +92,11 @@
                                             
                                             <td><?php echo $item['nha_cung_cap']?></td>
                                             <td><?php echo $item['ngay_chon_giong']?></td>
-                                            <td></td>
+                                            <td>
+                                                <img alt="" src="../public/uploads/qrcode/<?php echo $item['qrcode']?>" width="80px" height="80px">
+                                            </td>
                                             <td style="text-align: center;">
+                                                <a class="btn btn-primary" href="xem.php?id=<?php echo $item['id'] ?>" > Xem</a>
                                                 <a class="btn btn-info" href="edit.php?id=<?php echo $item['id'] ?>" ><i class="fa fa-edit"></i> Sửa</a>
                                                 <a id="<?php echo $item['id'] ?>" class="btn btn-warning btn_delete" href="delete.php?id=<?php echo $item['id'] ?>"><i class="fa fa-trash"></i> Xóa</a>
                                             </td>
