@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2020 at 11:21 AM
+-- Generation Time: Apr 11, 2020 at 10:28 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -38,27 +38,27 @@ CREATE TABLE `accounts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loai_rau`
+-- Table structure for table `dieu_kien_canh_tac`
 --
 
-CREATE TABLE `loai_rau` (
+CREATE TABLE `dieu_kien_canh_tac` (
   `id` int(11) NOT NULL,
-  `name` varchar(200) NOT NULL,
-  `nhiet_do` int(11) DEFAULT NULL,
-  `do_am` int(11) DEFAULT NULL,
+  `rau_id` int(11) NOT NULL,
+  `ten_dieu_kien` text DEFAULT NULL,
+  `dieu_kien` text DEFAULT NULL,
   `deleted_at` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `loai_rau`
+-- Dumping data for table `dieu_kien_canh_tac`
 --
 
-INSERT INTO `loai_rau` (`id`, `name`, `nhiet_do`, `do_am`, `deleted_at`, `created_at`) VALUES
-(1, 'Rau thơm', NULL, NULL, 0, '2020-03-29 06:19:55'),
-(2, 'Rau ăn quả', NULL, NULL, 0, '2020-03-29 06:21:24'),
-(3, 'Rau ăn thân', NULL, NULL, 0, '2020-03-29 06:21:58'),
-(4, 'Rau ăn hoa', NULL, NULL, 0, '2020-03-29 06:22:06');
+INSERT INTO `dieu_kien_canh_tac` (`id`, `rau_id`, `ten_dieu_kien`, `dieu_kien`, `deleted_at`, `created_at`) VALUES
+(1, 9, 'nhiet do', '>50', 0, '2020-04-04 03:17:20'),
+(2, 9, 'Nhiệt độ', '50-60', 0, '2020-04-04 12:04:24'),
+(3, 11, 'Thời gian thu hoạch', '>10 ngày', 0, '2020-04-04 13:52:20'),
+(4, 12, 'ngày canh tác', '20 ngày', 0, '2020-04-11 04:39:22');
 
 -- --------------------------------------------------------
 
@@ -69,11 +69,9 @@ INSERT INTO `loai_rau` (`id`, `name`, `nhiet_do`, `do_am`, `deleted_at`, `create
 CREATE TABLE `rau` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `loai_rau_id` int(11) NOT NULL,
   `nha_cung_cap` varchar(200) DEFAULT NULL,
   `image_giong` varchar(200) DEFAULT NULL,
-  `qrcode` varchar(200) DEFAULT NULL,
-  `ngay_chon_giong` datetime DEFAULT NULL,
+  `ngay_trong` date DEFAULT NULL,
   `deleted_at` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `price` int(11) DEFAULT NULL,
@@ -84,9 +82,19 @@ CREATE TABLE `rau` (
 -- Dumping data for table `rau`
 --
 
-INSERT INTO `rau` (`id`, `name`, `loai_rau_id`, `nha_cung_cap`, `image_giong`, `qrcode`, `ngay_chon_giong`, `deleted_at`, `created_at`, `price`, `number`) VALUES
-(1, 'Rau thủy canh', 1, '', NULL, NULL, '2020-03-04 00:00:00', 0, '2020-03-29 08:50:27', NULL, NULL),
-(2, 'Rau dền', 2, '', NULL, NULL, '2020-03-29 10:19:00', 0, '2020-03-29 08:51:15', NULL, NULL);
+INSERT INTO `rau` (`id`, `name`, `nha_cung_cap`, `image_giong`, `ngay_trong`, `deleted_at`, `created_at`, `price`, `number`) VALUES
+(1, 'Rau muống', 'Văn phòng phẩm ABC , 123 võ văn Ngân', 'rau_muong.jpg', '2020-03-29', 0, '2020-03-29 09:24:09', 4000, 2),
+(2, 'Rau mướp', 'Phong lan 23 Lê lợi', 'muop.png', '2020-03-30', 0, '2020-03-29 09:44:05', 10000, 1),
+(3, 'Rau hoa chuối', 'Nhà a 46 Phạm Văn Đồng', 'hoa_chuoi.jpg', '2020-03-30', 0, '2020-03-29 09:47:10', 12000, 2),
+(4, 'aaaa', '122 ', 'adven.jpg', '2020-03-30', 0, '2020-03-29 09:49:31', 3500000, 1),
+(5, 'âq23', '122 aaa', 'zi_dat.png', '2020-03-30', 1, '2020-03-29 09:50:05', 3000000, 1),
+(6, '12A', 'Văn phòng phẩm ABC , 123 võ văn Ngân', '9_ro.jpg', '2020-02-02', 0, '2020-03-29 09:50:43', 3500000, 1),
+(7, 'rau dền', '123 nguyễn trãi', '3_chuon.jpg', '2020-03-30', 0, '2020-03-29 10:17:48', 100, 2),
+(8, 'rau bông súng', '123 Phong phong', 'icon1.png', '2020-04-02', 0, '2020-04-02 01:31:03', 12000, 1),
+(9, 'Rau giá', 'Lê lai', 'hinh-nen-dep-cho-may-tinh-nature-wallpapers-nature-wallpaper-latest-beautiful-wallpapers.jpg', '2020-04-04', 0, '2020-04-04 03:16:40', 10000, 1),
+(10, 'Rau hoa sen', 'Văn Bá', 'icon2.png', '2020-04-04', 0, '2020-04-04 12:03:21', 900000, 1),
+(11, 'Rau xxx', 'Nguyễn Văn Bắc', 'icon3.png', '2020-04-04', 0, '2020-04-04 13:51:42', 1000, 3),
+(12, 'Rau sen', 'Đồng tháp', 'vietnam.png', '2020-04-11', 0, '2020-04-11 04:38:27', 25000, 10);
 
 -- --------------------------------------------------------
 
@@ -97,11 +105,22 @@ INSERT INTO `rau` (`id`, `name`, `loai_rau_id`, `nha_cung_cap`, `image_giong`, `
 CREATE TABLE `thu_hoach` (
   `id` int(11) NOT NULL,
   `rau_id` int(11) NOT NULL,
+  `nha_san_xuat` varchar(200) DEFAULT NULL,
   `ngay_thu_hoach` datetime DEFAULT NULL,
+  `san_luong` int(11) DEFAULT NULL,
+  `gia_ban` varchar(200) DEFAULT NULL,
   `image` varchar(200) NOT NULL,
+  `qrcode` varchar(200) DEFAULT NULL,
   `deleted_at` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `thu_hoach`
+--
+
+INSERT INTO `thu_hoach` (`id`, `rau_id`, `nha_san_xuat`, `ngay_thu_hoach`, `san_luong`, `gia_ban`, `image`, `qrcode`, `deleted_at`, `created_at`) VALUES
+(3, 12, NULL, NULL, NULL, NULL, '', 'generate.php_text_qrcode=12.png', 0, '2020-04-11 04:48:59');
 
 --
 -- Indexes for dumped tables
@@ -114,9 +133,9 @@ ALTER TABLE `accounts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `loai_rau`
+-- Indexes for table `dieu_kien_canh_tac`
 --
-ALTER TABLE `loai_rau`
+ALTER TABLE `dieu_kien_canh_tac`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -142,22 +161,22 @@ ALTER TABLE `accounts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `loai_rau`
+-- AUTO_INCREMENT for table `dieu_kien_canh_tac`
 --
-ALTER TABLE `loai_rau`
+ALTER TABLE `dieu_kien_canh_tac`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `rau`
 --
 ALTER TABLE `rau`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `thu_hoach`
 --
 ALTER TABLE `thu_hoach`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

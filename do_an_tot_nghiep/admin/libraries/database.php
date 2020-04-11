@@ -54,9 +54,7 @@
 		{
 			$sql = "SELECT * FROM $table WHERE ";
 			$sql .=$condition;
-			
 			$query = mysqli_query($this->connect,$sql);
-
 			$result=[];
 			if($query){
 
@@ -70,7 +68,7 @@
 
 		public function fetchID($table,$id)
 		{
-			$sql = "SELECT * FROM $table WHERE id = $id ";
+			$sql = "SELECT * FROM $table WHERE id = $id AND deleted_at = 0 ";
 			$query = mysqli_query($this->connect,$sql) or die('query error');
 			return mysqli_fetch_assoc($query);
 		}

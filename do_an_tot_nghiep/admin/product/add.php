@@ -10,19 +10,15 @@
         $data =
         [
             'name' => postInput('name'),
-            'loai_rau_id' => postInput('category'),
             'price' => postInput('price'),
             'number' => postInput('number'),
             'nha_cung_cap' => postInput('nha_cung_cap'),
-            'ngay_chon_giong' => postInput('ngay_chon_giong')
+            'ngay_trong' => postInput('ngay_trong')
             
         ];
         $errors = [];
         
-        if(postInput('category') == '')
-        {
-            $errors['category'] = 'Vui lòng nhập loại rau';
-        }
+        
         if(postInput('name') == '')
         {
             $errors['name'] = 'Vui lòng nhập tên sản phẩm';
@@ -34,17 +30,14 @@
         {
             $errors['price'] = 'Vui lòng nhập giá sản phẩm';
         }
-        if(postInput('number') == '')
-        {
-            $errors['number'] = 'Vui lòng nhập số lượng';
-        }
+        
         if(postInput('nha_cung_cap') == '')
         {
             $errors['nha_cung_cap'] = 'Vui lòng nhập vào nhà cung cấp';
         }
-        if(postInput('ngay_chon_giong') == '')
+        if(postInput('ngay_trong') == '')
         {
-            $errors['ngay_chon_giong'] = 'Vui lòng nhập vào ngày chọn giống';
+            $errors['ngay_trong'] = 'Vui lòng nhập vào ngày chọn giống';
         }
         
         if($_FILES['images']['name'] == ''){
@@ -53,39 +46,33 @@
         
        
         if(empty($errors)){
-            //check exist
-            $checkNameExist = $db->fetchOne('rau',"loai_rau_id = '".$data['loai_rau_id']."' AND name= '".$data['name']."' ");
+            
+            if(isset($_FILES['images'])){
+            $file_name  = $_FILES['images']['name'];
+            $file_tmp   = $_FILES['images']['tmp_name'];
+            $file_type  = $_FILES['images']['type'];
+            $file_erro  = $_FILES['images']['error'];
 
-            if($checkNameExist){
-                $_SESSION['error'] = 'Tên rau này đã tồn tại , vui lòng nhập tên khác';
-            }else{
-
-                if(isset($_FILES['images'])){
-                $file_name  = $_FILES['images']['name'];
-                $file_tmp   = $_FILES['images']['tmp_name'];
-                $file_type  = $_FILES['images']['type'];
-                $file_erro  = $_FILES['images']['error'];
-
-                    if($file_erro == 0){
-                        $part = IMAGE."rau/";
-                        $data['image_giong'] = $file_name;
-                    }else{/*do nothing*/}
-               
+                if($file_erro == 0){
+                    $part = IMAGE."rau/";
+                    $data['image_giong'] = $file_name;
                 }else{/*do nothing*/}
+           
+            }else{/*do nothing*/}
 
-                // _debug($data);
-                $id_insert = $db->insertDB("rau",$data);
-                if($id_insert){
-                    move_uploaded_file($file_tmp, $part.$file_name);
+            // _debug($data);
+            $id_insert = $db->insertDB("rau",$data);
+            if($id_insert){
+                move_uploaded_file($file_tmp, $part.$file_name);
 
-                    $_SESSION['success'] = "Thêm mới thành công";
-                    $_SESSION['rau_id'] = mysqli_insert_id($db->connect);
-                    redirectStyle('product/canh_tac.php');
-                }else{
-                    $_SESSION['error'] = "Thêm mới thất bại";
-                    redirectStyle('product');
-                }
+                $_SESSION['success'] = "Thêm mới thành công";
+                $_SESSION['rau_id'] = mysqli_insert_id($db->connect);
+                redirectStyle('product/canh_tac.php');
+            }else{
+                $_SESSION['error'] = "Thêm mới thất bại";
+                redirectStyle('product');
             }
+            
             
         }
     }
@@ -138,30 +125,7 @@
                     <div class="col-md-12">
                         
                         <form action="" method="POST" enctype="multipart/form-data">
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Loại rau<span style="color: red">*</span></label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="category">
-                                        <option value=""> --Lựa chọn loại rau-- </option>
-                                        <?php 
-                                            foreach($categories as $item){ ?>
-
-                                                <option value="<?php echo $item['id'] ?>"><?php echo $item['name'] ?></option>
-
-                                            <?php } ?>
-
-                                        ?>
-                                        
-                                     </select>
-                                     <?php if(isset($errors['category'])) { ?>
-                                        <p class="text-danger">
-                                            <?php echo $errors['category'] ?>
-                                        </p>
-
-                                  <?php } ?>
-                                </div>
-                            </div>
-
+                            
 							<div class="form-group row">
 						    	<label for="inputEmail3" class="col-sm-2 col-form-label">Tên <span style="color: red">*</span></label>
 							    <div class="col-sm-10">
@@ -194,9 +158,9 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Số lượng <span style="color: red">*</span></label>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Số lượng </label>
                                 <div class="col-sm-10">
-                                  <input type="number" value="1" min="1"  class="form-control" id="inputEmail3" placeholder="Nhập số lượng" name='number'>
+                                  <input type="number" min="0"  class="form-control" id="inputEmail3" placeholder="Nhập số lượng" name='number'>
 
                                   <?php if(isset($errors['number'])) { ?>
                                         <p class="text-danger">
@@ -222,12 +186,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Ngày chọn giống <span style="color: red">*</span></label>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Ngày trồng <span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                  <input type="date" class="form-control" id="inputEmail3" name='ngay_chon_giong'>
-                                <?php if(isset($errors['ngay_chon_giong'])) { ?>
+                                  <input type="date" class="form-control" id="inputEmail3" name='ngay_trong'>
+                                <?php if(isset($errors['ngay_trong'])) { ?>
                                         <p class="text-danger">
-                                            <?php echo $errors['ngay_chon_giong'] ?>
+                                            <?php echo $errors['ngay_trong'] ?>
                                         </p>
 
                                   <?php } ?>
@@ -254,7 +218,7 @@
                              <?php  require_once __DIR__. DIRECTORY_SEPARATOR."../message/message.php";  ?>
 						    <div class="form-group row">
 							    <div class="col-sm-12">
-							      <button type="submit" class="btn btn-primary submit-form" style="float: right">Next</button>
+							      <button type="submit" class="btn btn-primary submit-form" style="float: right">Lưu</button>
 							    </div>
 						    </div>
 						</form>

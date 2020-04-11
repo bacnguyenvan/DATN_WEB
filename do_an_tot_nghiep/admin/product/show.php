@@ -4,7 +4,9 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         $errors = [];
-        $data = [];
+        $data = [
+            'rau_id' => $_SESSION['rau_id'],
+        ];
        
         if( empty($_FILES['imgqrcode']['name'] ) ){
             $errors['image'] = 'Vui lòng thêm hình vào';
@@ -23,7 +25,7 @@
                 }else{/*do nothing*/}
                 
                 if(!empty($_SESSION['rau_id'])){
-                    $id_update = $db->updateDB("rau",$data,['id'=>$_SESSION['rau_id'] ]);
+                    $id_update = $db->insertDB("thu_hoach",$data);
                     if($id_update){
                         move_uploaded_file($file_tmp, $part.$file_name);
 

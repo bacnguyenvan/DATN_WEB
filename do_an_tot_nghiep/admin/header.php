@@ -9,8 +9,12 @@
     require_once "libraries/database.php";
    
     $db = new database;
-    // $product_chua_xu_li = $db->fetchAll_condition('transaction'," status=0 AND deleted_at=0");
+    
+    $total_qrcode = count($db->fetchAll_condition('thu_hoach'," deleted_at = 0 AND qrcode IS NOT NULL"));
+    $total_product = count($db->fetchAll_condition('rau'," deleted_at = 0 "));
+    $total_not_qrcode = $total_product - $total_qrcode;
 
+        
 
 
 ?>
@@ -30,10 +34,7 @@
     <title>
         
         <?php if($active== 'control'): echo 'Trang chủ' ?>
-        <?php elseif ($active== 'loai_rau'): echo 'Loại rau' ?>
         <?php elseif ($active== 'rau'): echo 'Quản lí vườn rau' ?>
-        <?php elseif ($active== 'admin'): echo 'Người dùng' ?>
-        <?php elseif ($active== 'transaction'): echo 'Quản lí đơn hàng' ?>
         <?php endif ?>
 
     </title>
@@ -80,8 +81,8 @@
             <ul class="nav navbar-right top-nav">
 
                 <li class="dropdown inform_order">
-                    <!-- <a href=""><i class="fa fa-bell"></i> <?php if ($product_chua_xu_li): ?> <span>Có <?php echo count($product_chua_xu_li)?> cây trồng chưa được xử lí QRCODE</span> <?php endif ?></a> -->
-                    <a href=""><i class="fa fa-bell"></i> <span>Có 6 cây trồng chưa được xử lí QRCODE</span> </a>
+                    
+                    <a href=""><i class="fa fa-bell"></i> <span>Có <?php echo $total_not_qrcode; ?> cây trồng chưa được xử lí QRCODE</span> </a>
                     
                 </li>
                 
@@ -105,26 +106,11 @@
                     <li>
                         <a href="<?php echo modules('chart')?>"><i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;Biểu đồ</a>
                     </li>
-                    <li class="<?php echo isset($active) && $active=='loai_rau' ?'active':'' ?>">
-                        <a href=" <?php echo modules('categories')?> "><i class="fa fa-fw fa-table"></i> Danh sách loại rau</a>
-                    </li>
                     <li class="<?php echo isset($active) && $active=='rau'?'active':'' ?>">
                         <a href="<?php echo modules('product') ?>"><i class="fa fa-fw fa-edit"></i> Quản lí vườn rau</a>
                     </li>
 
 
-                    
-                   
-
-                    <!-- <li class="<?php echo isset($active) && $active=='admin' ?'active':'' ?>">
-                        <a href=" <?php echo modules('user')?> "> <i class="fa fa-user"></i>&nbsp; Danh sách người dùng</a>
-                    </li>
-
-                    <li class="<?php echo isset($active) && $active=='transaction' ?'active':'' ?>">
-                        <a href=" <?php echo modules('transaction')?> "> <i class="fa fa-shopping-cart"></i>&nbsp; Quản lí đơn hàng</a>
-                    </li>  -->
-                   
-                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

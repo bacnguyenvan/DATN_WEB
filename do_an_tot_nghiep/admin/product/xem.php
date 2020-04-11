@@ -4,11 +4,15 @@
 
     $id = (int)getInput('id');
     $rauById = $db->fetchID('rau',$id); 
+
     if(empty($rauById)) {
         echo ($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
         die();
     }
-    
+    $thu_hoach_By_rau_id =  $db->fetchAll_condition('thu_hoach', "rau_id = $id"); 
+
+    $dieu_kien_canh_tac = $db->fetchAll_condition('dieu_kien_canh_tac',"rau_id = $id");
+    // _debug($dieu_kien_canh_tac); die();
 
 ?>
 
@@ -48,6 +52,7 @@
                     <div class="col-md-12">
                         
                         <form action="" method="POST" enctype="multipart/form-data">
+                            <h2> 1. Khâu chọn giống </h2>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Tên</label>
                                 <div class="col-sm-10">
@@ -79,7 +84,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Ngày trồng </label>
                                 <div class="col-sm-10">
-                                    <p><?php echo $rauById['ngay_chon_giong'] ?></p>    
+                                    <p><?php echo $rauById['ngay_trong'] ?></p>    
                                 </div>
                             </div>
 
@@ -90,32 +95,59 @@
                                 </div>
                             </div>
 
-                            <h2> THU HOẠCH </h2>
+                            <h2>2. Quá trình canh tác</h2>
+                            <h4>Điều kiện canh tác</h4>
+                            <?php if(!empty($dieu_kien_canh_tac)){ 
+                                foreach($dieu_kien_canh_tac as $item){
+                                ?>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">- <?php echo $item['ten_dieu_kien']; ?></label>
+                                    <div class="col-sm-10">
+
+                                        <p><?php echo $item['dieu_kien']; ?></p>    
+                                    </div>
+                                </div>
+                            <?php } } ?>
+
+                            <h2> 3. Thu hoạch </h2>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Nhà cung cấp</label>
+                                <label class="col-sm-2 col-form-label">Nhà sản xuất</label>
                                 <div class="col-sm-10">
-                                    <p><?php echo $rauById['nha_cung_cap'] ?></p>    
+
+                                    <p><?php if(isset($thu_hoach_By_rau_id['nha_san_xuat'])) echo $thu_hoach_By_rau_id['nha_san_xuat']; ?></p>    
                                 </div>
                             </div>
                            
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Ngày thu hoạch</label>
                                 <div class="col-sm-10">
-                                    <p><?php echo $rauById['ngay_chon_giong'] ?></p>    
+                                    <p><?php if(isset($thu_hoach_By_rau_id['ngay_thu_hoach'])) echo $thu_hoach_By_rau_id['ngay_thu_hoach'] ?></p>    
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Sản lượng</label>
                                 <div class="col-sm-10">
-                                    <p><?php echo $rauById['number'] ?></p>    
+                                    <p><?php if(isset($thu_hoach_By_rau_id['san_luong'])) echo $thu_hoach_By_rau_id['san_luong'] ?></p>    
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Ảnh cây khi thu hoạch</label>
                                 <div class="col-sm-10">
-                                    <img alt="" src="../public/uploads/rau/<?php echo $rauById['image_giong']?>" width="100px" height="100px">    
+                                    <?php if(isset($thu_hoach_By_rau_id['image'])){ ?>
+                                    <img alt="" src="../public/uploads/rau/<?php echo $thu_hoach_By_rau_id['image']?>" width="100px" height="100px"> 
+                                    <?php } ?>   
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Ảnh QRCode</label>
+                                <div class="col-sm-10">
+                                    <?php if(isset($thu_hoach_By_rau_id['qrcode'])){ ?>
+                                    <img alt="" src="../public/uploads/qrcode/<?php echo $thu_hoach_By_rau_id['qrcode']?>" width="100px" height="100px">   
+                                    <?php } ?>  
                                 </div>
                             </div>
 
@@ -129,5 +161,6 @@
             <!-- /.container-fluid -->
         </div>
         <!-- end content-->
+
 
 <?php require_once "../footer.php" ?>    

@@ -3,12 +3,21 @@
     $active = 'rau'; // active 
 
     $id = (int)getInput('id');
-    $productById = $db->fetchID('products',$id); 
-    $categories = $db->fetchAll('category');
+    $productById = $db->fetchID('rau',$id); 
+    $product_thu_hoach = $db->fetchOne('thu_hoach'," deleted_at = 0 AND rau_id = $id ");
     
+
+
+    if(isset($_POST['number_row'])){
+        $number_row = $_POST['number_row'];
+    }else{
+        $number_row = 1;
+    }
+
 
     if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
+        _debug("lam sau! see you again :)) ");die(); 
         
         $data =
         [
@@ -85,19 +94,19 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                           Sửa thông tin sản phẩm
+                           Cập nhật thông tin rau trồng
             
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Home</a>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Trang chủ</a>
                             </li>
                             <li class="">
                                 <i class="fa fa-file"></i> Sản phẩm
                             </li>
 
                             <li class="active">
-                                <i class="fa fa-edit"></i> Sửa
+                                <i class="fa fa-edit"></i> Cập nhật
                             </li>
 
                         </ol>
@@ -110,39 +119,7 @@
                     <div class="col-md-12">
                         
                         <form action="" method="POST" enctype="multipart/form-data">
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Danh mục<span style="color: red">*</span></label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="category">
-                                        <option value=""> --Choose category-- </option>
-                                        <?php 
-                                            foreach($categories as $item){ ?>
-
-                                                <option value="<?php echo $item['id'] ?>" 
-                                                        <?php if ($item['id'] == $productById['category_id']) {
-                                                            echo "selected";
-                                                            
-                                                        } ?>
-                                                    >
-
-                                                    <?php echo $item['name'] ?>
-                                                
-                                                </option>
-
-                                            <?php } ?>
-
-                                        ?>
-                                        
-                                     </select>
-                                     <?php if(isset($errors['category'])) { ?>
-                                        <p class="text-danger">
-                                            <?php echo $errors['category'] ?>
-                                        </p>
-
-                                  <?php } ?>
-                                </div>
-                            </div>
-
+                            <h2>1. Khâu chọn giống</h2>
 							<div class="form-group row">
 						    	<label for="inputEmail3" class="col-sm-2 col-form-label">Tên<span style="color: red">*</span></label>
 							    <div class="col-sm-10">
@@ -162,7 +139,7 @@
 							</div>
 
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Giá<span style="color: red">*</span></label>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Giá mua giống<span style="color: red">*</span></label>
                                 <div class="col-sm-10">
                                   <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập giá" name='price' value="<?php echo $productById['price'] ?>">
 
@@ -176,7 +153,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Số lượng<span style="color: red">*</span></label>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Số lượng giống<span style="color: red">*</span></label>
                                 <div class="col-sm-10">
                                   <input type="number" min="1"  class="form-control" id="inputEmail3" placeholder="Nhập số lượng sản phẩm" name='number' value="<?php echo $productById['number']?>">
 
@@ -188,42 +165,113 @@
                                   <?php } ?>
                                 </div>
                             </div>
-
                             <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Sale</label>
-                                <div class="col-sm-4">
-                                  <input type="number" min="0"  class="form-control" id="inputEmail3" placeholder="giảm giá" name='sale' value="<?php echo $productById['sale'] ?>">
-                                </div>
-
-                                <label class="col-sm-2 col-form-label">Hình</label>
-                                <div class="col-sm-4">
-                                    <input type="file" name="images" class="form-control" value="<?php echo $productById['thunbar'] ?>">
-                                    <img style="width: 40px;height: 40px" src="../public/uploads/products/<?php echo $productById['thunbar'] ?>">
-                                    <?php if(isset($errors['image'])) { ?>
-                                        <p class="text-danger">
-                                            <?php echo $errors['image'] ?>
-                                        </p>
-
-                                  <?php } ?>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="inputEmail3" class="col-sm-2 col-form-label">Nội dung</label>
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Nhà cung cấp<span style="color: red">*</span></label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" name='content' rows="5"><?php echo $productById['content'] ?>
-                                        
-                                    </textarea>
-                                    <?php if(isset($errors['content'])) { ?>
+                                  <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập nhà cung cấp giống" name='nha_cung_cap' value="<?php echo $productById['nha_cung_cap']?>">
+
+                                  <?php if(isset($errors['nha_cung_cap'])) { ?>
                                         <p class="text-danger">
-                                            <?php echo $errors['content'] ?>
+                                            <?php echo $errors['nha_cung_cap'] ?>
+                                        </p>
+
+                                  <?php } ?>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Ngày trồng <span style="color: red">*</span></label>
+                                <div class="col-sm-10">
+                                  <input type="date" class="form-control" id="inputEmail3" placeholder="Nhập ngày trồng" name='ngay_trong' value="<?php echo $productById['ngay_trong']?>" >
+                                <?php if(isset($errors['ngay_trong'])) { ?>
+                                        <p class="text-danger">
+                                            <?php echo $errors['ngay_trong'] ?>
+                                        </p>
+
+                                  <?php } ?>
+                                  
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                
+                                <label class="col-sm-2 col-form-label">Hình ảnh giống rau <span style="color: red">*</span></label>
+                                <div class="col-sm-4">
+                                    <input type="file" name="image_giong" class="form-control">
+                                    <?php if(isset($errors['image_giong'])) { ?>
+                                        <p class="text-danger">
+                                            <?php echo $errors['image_giong'] ?>
                                         </p>
 
                                   <?php } ?>
                                 </div>
                             </div>
 
+                            <h2> 2. Quá trình canh tác</h2>
+                            <?php $show_next = false; require_once  "_form_dieu_kien_canh_tac.php";?>
+                            
+                            <h2> 3. Thu hoạch </h2>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Nhà sản xuất</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập nhà sản xuất" name='nha_san_xuat' value="<?php echo $product_thu_hoach['nha_san_xuat']?>">
+
+                                  
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Ngày thu hoạch </label>
+                                <div class="col-sm-10">
+                                  <input type="date" class="form-control" id="inputEmail3" placeholder="Nhập ngày thu hoạch" name='ngay_thu_hoach' value="<?php echo $product_thu_hoach['ngay_thu_hoach']?>">
+                                
+                                  
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Sản lượng </label>
+                                <div class="col-sm-10">
+                                  <input type="number" min="0"  class="form-control" id="inputEmail3" placeholder="Nhập sản lượng " name='san_luong' value="<?php echo $product_thu_hoach['san_luong']?>">
+
+                                  
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Giá bán </label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập giá bán " name='gia_ban' value="<?php echo $product_thu_hoach['gia_ban']?>">
+
+                                  
+                                </div>
+                            </div>
                            
+                           <div class="form-group row">
+                                
+                                <label class="col-sm-2 col-form-label">Hình ảnh rau thu hoạch </label>
+                                <div class="col-sm-4">
+                                    <input type="file" name="image_thu_hoach" class="form-control">
+                                    <?php if(isset($errors['image_thu_hoach'])) { ?>
+                                        <p class="text-danger">
+                                            <?php echo $errors['image_thu_hoach'] ?>
+                                        </p>
+
+                                  <?php } ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                
+                                <label class="col-sm-2 col-form-label">Hình ảnh QRCode</label>
+                                <div class="col-sm-4">
+                                    <input type="file" name="image_qrcode" class="form-control">
+                                    <?php if(isset($errors['image_qrcode'])) { ?>
+                                        <p class="text-danger">
+                                            <?php echo $errors['image_qrcode'] ?>
+                                        </p>
+
+                                  <?php } ?>
+                                </div>
+                            </div>
 
 						    <div class="form-group row">
 							    <div class="col-sm-12">

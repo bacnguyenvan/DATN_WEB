@@ -2,8 +2,7 @@
     require_once  "../autoload/autoload.php";
     $active = 'rau'; // active 
     $css = true;
-    $categories = $db->fetchAll('loai_rau');
-
+    
 
 ?>
 

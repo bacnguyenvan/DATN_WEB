@@ -8,12 +8,13 @@
         $p = 1;
     }
 
-    $sql = "SELECT rau.*,loai_rau.name as namecate FROM rau
-            INNER JOIN loai_rau ON loai_rau.id = rau.loai_rau_id AND rau.deleted_at='0' ";
-   
+    // $sql = "SELECT * FROM rau WHERE rau.deleted_at='0' ";
+    $sql = "SELECT rau.*,thu_hoach.nha_san_xuat,thu_hoach.ngay_thu_hoach,thu_hoach.san_luong,thu_hoach.image as hinh_anh_thu_hoach,thu_hoach.qrcode FROM rau
+            LEFT JOIN thu_hoach ON rau.id = thu_hoach.rau_id WHERE rau.deleted_at = 0"; 
+            
+
    
     $products = $db->fetchJone('rau',$sql,$p,5,true);
-    
     $total_page = $products['page'];
     $total_product = count($db->fetchAll_condition('rau',"deleted_at=0"));
     array_shift($products); //reject 'page' got from JOIN
@@ -66,14 +67,23 @@
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
+                                        <!-- trồng -->
                                         <th>STT</th>
                                         <th>Tên</th>
-                                        <th>Hình ảnh giống</th>
-                                        <th>Loại rau</th>
+                                        <th>Giá mua giống</th>
+                                        <th>Số lượng giống</th>
                                         <th>Nhà cung cấp</th>
-                                        <th>Ngày chọn giống</th>
-                                        <th>QRCODE</th>
-                                        <th>Hành động</th>
+                                        <th>Ngày trồng</th>
+                                        <th>Hình ảnh giống</th>
+                                       
+                                        <!-- thu hoạch -->
+                                        <th>Nhà sản xuất</th>
+                                        <th>Ngày thu hoạch</th>
+                                        <th>Sản lượng</th>
+                                        <th>Ảnh cây thu hoạch</th>
+                                        <th>QRCode</th>
+
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -83,21 +93,25 @@
                                         <tr>
                                             <td><?php echo $stt?></td>
                                             <td><?php echo $item['name'] ?></td>
+                                            <td><?php echo $item['price'] ?></td>
+                                            <td><?php echo $item['number'] ?></td>
+                                            <td><?php echo $item['nha_cung_cap'] ?></td>
+                                            <td><?php echo $item['ngay_trong'] ?></td>
+                                           
+
                                             <th><img alt="" src="../public/uploads/rau/<?php echo $item['image_giong']?>" width="80px" height="80px"></th>
-                                            <td>
-                                                <?php  echo (isset($item['namecate']))?$item['namecate']:'<span style="color:red">Đã xóa loại rau của rau này</span>' ?>
-                                                
-                                            </td>
                                             
-                                            
-                                            <td><?php echo $item['nha_cung_cap']?></td>
-                                            <td><?php echo $item['ngay_chon_giong']?></td>
+                                            <!-- thu hoạch -->
+                                            <td><?php echo $item['nha_san_xuat'] ?></td>
+                                            <td><?php echo $item['ngay_thu_hoach'] ?></td>
+                                             <td><?php echo $item['san_luong'] ?></td>
+                                            <td><img alt="" src="../public/uploads/rau/<?php echo $item['hinh_anh_thu_hoach']?>" width="80px" height="80px"></td>
                                             <td>
                                                 <img alt="" src="../public/uploads/qrcode/<?php echo $item['qrcode']?>" width="80px" height="80px">
                                             </td>
                                             <td style="text-align: center;">
                                                 <a class="btn btn-primary" href="xem.php?id=<?php echo $item['id'] ?>" > Xem</a>
-                                                <a class="btn btn-info" href="edit.php?id=<?php echo $item['id'] ?>" ><i class="fa fa-edit"></i> Sửa</a>
+                                                <a class="btn btn-info" href="edit.php?id=<?php echo $item['id'] ?>" ><i class="fa fa-edit"></i> Cập nhật</a>
                                                 <a id="<?php echo $item['id'] ?>" class="btn btn-warning btn_delete" href="delete.php?id=<?php echo $item['id'] ?>"><i class="fa fa-trash"></i> Xóa</a>
                                             </td>
                                         </tr>
