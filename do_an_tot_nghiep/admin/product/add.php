@@ -21,14 +21,14 @@
         
         if(postInput('name') == '')
         {
-            $errors['name'] = 'Vui lòng nhập tên sản phẩm';
+            $errors['name'] = 'Vui lòng nhập tên rau';
         }
 
     
 
         if(postInput('price') == '')
         {
-            $errors['price'] = 'Vui lòng nhập giá sản phẩm';
+            $errors['price'] = 'Vui lòng nhập giá rau';
         }
         
         if(postInput('nha_cung_cap') == '')

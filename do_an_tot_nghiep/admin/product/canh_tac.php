@@ -44,7 +44,6 @@
                     'dieu_kien' => $inputs['condition'][$i],
                 ];
                 $id_insert = $db->insertDB("dieu_kien_canh_tac",$data);
-                if($id_insert) break;
             }
 
             if($id_insert){

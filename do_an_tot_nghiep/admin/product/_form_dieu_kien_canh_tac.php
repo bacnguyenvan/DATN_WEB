@@ -40,7 +40,6 @@
                 </div>
                 <?php } ?>
 
-
             </div>
             <?php if($show_next){ ?>
             <div>
@@ -67,5 +66,4 @@
             </div>
         </div>
     </div>
-
 </div>

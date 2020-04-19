@@ -6,13 +6,11 @@
     $rauById = $db->fetchID('rau',$id); 
 
     if(empty($rauById)) {
-        echo ($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
-        die();
+       redirectStyle('404.php');
     }
-    $thu_hoach_By_rau_id =  $db->fetchAll_condition('thu_hoach', "rau_id = $id"); 
+    $thu_hoach_By_rau_id =  $db->fetchOne('thu_hoach', "rau_id = $id "); 
 
-    $dieu_kien_canh_tac = $db->fetchAll_condition('dieu_kien_canh_tac',"rau_id = $id");
-    // _debug($dieu_kien_canh_tac); die();
+    $dieu_kien_canh_tac = $db->fetchAll_condition('dieu_kien_canh_tac',"rau_id = $id ");
 
 ?>
 
@@ -136,8 +134,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Ảnh cây khi thu hoạch</label>
                                 <div class="col-sm-10">
-                                    <?php if(isset($thu_hoach_By_rau_id['image'])){ ?>
-                                    <img alt="" src="../public/uploads/rau/<?php echo $thu_hoach_By_rau_id['image']?>" width="100px" height="100px"> 
+                                    <?php if(!empty($thu_hoach_By_rau_id['image_thu_hoach'])){ ?>
+                                    <img alt="" src="../public/uploads/thu_hoach/<?php echo $thu_hoach_By_rau_id['image_thu_hoach']?>" width="100px" height="100px"> 
                                     <?php } ?>   
                                 </div>
                             </div>
@@ -145,7 +143,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Ảnh QRCode</label>
                                 <div class="col-sm-10">
-                                    <?php if(isset($thu_hoach_By_rau_id['qrcode'])){ ?>
+                                    <?php if(!empty($thu_hoach_By_rau_id['qrcode'])){ ?>
                                     <img alt="" src="../public/uploads/qrcode/<?php echo $thu_hoach_By_rau_id['qrcode']?>" width="100px" height="100px">   
                                     <?php } ?>  
                                 </div>

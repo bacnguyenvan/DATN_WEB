@@ -31,7 +31,7 @@
 
 			$result = mysqli_query($this->connect,$sql) or die("Lỗi  truy vấn sql " .mysqli_error($this->connect));
             
-            return mysqli_fetch_assoc($result);
+            return $result;
 		}
 
 		public function fetchAll($table)
@@ -200,6 +200,7 @@
 			mysqli_query($this->connect,$sql);
 			return mysqli_affected_rows($this->connect); //mysqli_affected_rows : hàm trả về số dòng bị ảnh hưởng bởi câu truy vấn
 		}
+
 	}
 
 

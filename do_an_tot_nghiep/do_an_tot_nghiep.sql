@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2020 at 10:28 AM
+-- Generation Time: Apr 19, 2020 at 07:16 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -55,10 +55,11 @@ CREATE TABLE `dieu_kien_canh_tac` (
 --
 
 INSERT INTO `dieu_kien_canh_tac` (`id`, `rau_id`, `ten_dieu_kien`, `dieu_kien`, `deleted_at`, `created_at`) VALUES
-(1, 9, 'nhiet do', '>50', 0, '2020-04-04 03:17:20'),
-(2, 9, 'Nhiệt độ', '50-60', 0, '2020-04-04 12:04:24'),
-(3, 11, 'Thời gian thu hoạch', '>10 ngày', 0, '2020-04-04 13:52:20'),
-(4, 12, 'ngày canh tác', '20 ngày', 0, '2020-04-11 04:39:22');
+(3, 12, 'Thời gian thu hoạch', '>10 ngày', 0, '2020-04-04 13:52:20'),
+(4, 12, 'ngày canh tác', '20 ngày', 0, '2020-04-11 04:39:22'),
+(14, 13, 'Thời gian thu hoạch', 'tối đa 20 days', 0, '2020-04-19 04:02:57'),
+(15, 13, 'độ ẩm ', '100ph', 0, '2020-04-19 04:02:57'),
+(16, 9, 'độ ẩm ', '12ph', 0, '2020-04-19 05:12:29');
 
 -- --------------------------------------------------------
 
@@ -91,10 +92,26 @@ INSERT INTO `rau` (`id`, `name`, `nha_cung_cap`, `image_giong`, `ngay_trong`, `d
 (6, '12A', 'Văn phòng phẩm ABC , 123 võ văn Ngân', '9_ro.jpg', '2020-02-02', 0, '2020-03-29 09:50:43', 3500000, 1),
 (7, 'rau dền', '123 nguyễn trãi', '3_chuon.jpg', '2020-03-30', 0, '2020-03-29 10:17:48', 100, 2),
 (8, 'rau bông súng', '123 Phong phong', 'icon1.png', '2020-04-02', 0, '2020-04-02 01:31:03', 12000, 1),
-(9, 'Rau giá', 'Lê lai', 'hinh-nen-dep-cho-may-tinh-nature-wallpapers-nature-wallpaper-latest-beautiful-wallpapers.jpg', '2020-04-04', 0, '2020-04-04 03:16:40', 10000, 1),
+(9, 'Rau giá vàng', 'Lê lai 22', 'background_img.jpg', '2020-04-05', 0, '2020-04-04 03:16:40', 1001, 12),
 (10, 'Rau hoa sen', 'Văn Bá', 'icon2.png', '2020-04-04', 0, '2020-04-04 12:03:21', 900000, 1),
 (11, 'Rau xxx', 'Nguyễn Văn Bắc', 'icon3.png', '2020-04-04', 0, '2020-04-04 13:51:42', 1000, 3),
-(12, 'Rau sen', 'Đồng tháp', 'vietnam.png', '2020-04-11', 0, '2020-04-11 04:38:27', 25000, 10);
+(12, 'Rau sen', 'Đồng tháp', 'vietnam.png', '2020-04-11', 0, '2020-04-11 04:38:27', 25000, 10),
+(13, 'Rau bông lan 12', 'Tú bà hàng xanh', 'adven.jpg', '2020-04-20', 0, '2020-04-18 03:55:41', 13000, 127);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thong_so_moi_truong`
+--
+
+CREATE TABLE `thong_so_moi_truong` (
+  `id` int(11) NOT NULL,
+  `nhiet_do` int(11) DEFAULT NULL,
+  `do_am` int(11) DEFAULT NULL,
+  `time` time DEFAULT NULL,
+  `rau_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -106,10 +123,10 @@ CREATE TABLE `thu_hoach` (
   `id` int(11) NOT NULL,
   `rau_id` int(11) NOT NULL,
   `nha_san_xuat` varchar(200) DEFAULT NULL,
-  `ngay_thu_hoach` datetime DEFAULT NULL,
+  `ngay_thu_hoach` date DEFAULT NULL,
   `san_luong` int(11) DEFAULT NULL,
   `gia_ban` varchar(200) DEFAULT NULL,
-  `image` varchar(200) NOT NULL,
+  `image_thu_hoach` varchar(200) DEFAULT NULL,
   `qrcode` varchar(200) DEFAULT NULL,
   `deleted_at` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -119,8 +136,10 @@ CREATE TABLE `thu_hoach` (
 -- Dumping data for table `thu_hoach`
 --
 
-INSERT INTO `thu_hoach` (`id`, `rau_id`, `nha_san_xuat`, `ngay_thu_hoach`, `san_luong`, `gia_ban`, `image`, `qrcode`, `deleted_at`, `created_at`) VALUES
-(3, 12, NULL, NULL, NULL, NULL, '', 'generate.php_text_qrcode=12.png', 0, '2020-04-11 04:48:59');
+INSERT INTO `thu_hoach` (`id`, `rau_id`, `nha_san_xuat`, `ngay_thu_hoach`, `san_luong`, `gia_ban`, `image_thu_hoach`, `qrcode`, `deleted_at`, `created_at`) VALUES
+(3, 12, NULL, NULL, NULL, NULL, '', 'generate.php_text_qrcode=12.png', 0, '2020-04-11 04:48:59'),
+(4, 13, 'Trần văn A', '2020-04-20', 12, '1000/1 kí', 'background_img.jpg', 'bt_adapter.png', 0, '2020-04-18 03:58:59'),
+(5, 9, 'lê thị bé', '2020-04-21', 12, '1000/1 kí', 'hinh-nen-dep-cho-may-tinh-nature-wallpapers-nature-wallpaper-latest-beautiful-wallpapers.jpg', 'city1.jpg', 0, '2020-04-19 05:12:29');
 
 --
 -- Indexes for dumped tables
@@ -145,6 +164,12 @@ ALTER TABLE `rau`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `thong_so_moi_truong`
+--
+ALTER TABLE `thong_so_moi_truong`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `thu_hoach`
 --
 ALTER TABLE `thu_hoach`
@@ -164,19 +189,25 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `dieu_kien_canh_tac`
 --
 ALTER TABLE `dieu_kien_canh_tac`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `rau`
 --
 ALTER TABLE `rau`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `thong_so_moi_truong`
+--
+ALTER TABLE `thong_so_moi_truong`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `thu_hoach`
 --
 ALTER TABLE `thu_hoach`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
