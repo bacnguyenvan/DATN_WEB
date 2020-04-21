@@ -101,8 +101,8 @@
 
 	function base_url()
 	{
-		return $url = 'http://localhost/do_an_tot_nghiep/';
-		// return $url = 'http://barcode.localhost.com/';
+		// return $url = 'http://localhost/do_an_tot_nghiep/';
+		return $url = 'http://barcode.localhost.com/';
 	}
 	function modules($url)
 	{

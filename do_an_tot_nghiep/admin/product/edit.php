@@ -392,6 +392,10 @@
                                     <img alt="" src="../public/uploads/qrcode/<?php echo $product_thu_hoach['qrcode']?>" width="100px" height="100px">   
                                     <?php } ?> 
                                 </div>
+
+                                <div class="col-sm-4">
+                                    <a href="generateQRcode.php?text_qrcode=<?php echo $id ?>" class="btn btn-danger">Tạo QRCode ( nếu chưa có hình QRCode) <i class="fa fa-arrow-right"></i></a>
+                                </div>
                             </div>
 
 						    <div class="form-group row">
