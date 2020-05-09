@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ComicActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <RelativeLayout
+            android:id="@+id/header"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#97DCE9"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            >
+
+            <ImageView
+                android:id="@+id/imgComic"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
+                android:src="@drawable/conan_comic" />
+
+            <TextView
+                android:id="@+id/tvCategory"
+                android:text="Alashaki"
+                android:layout_toRightOf="@id/imgComic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <RelativeLayout
+                android:id="@+id/evaluate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/imgComic"
+                android:layout_below="@+id/tvCategory"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@drawable/layout_bg"
+                >
+
+                <ImageView
+                    android:id="@+id/imgStart"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/start_icon2" />
+
+                <TextView
+                    android:layout_toRightOf="@id/imgStart"
+                    android:text="8.3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:paddingTop="6dp"
+                    />
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/tvAuthor"
+                android:text="Alashaki"
+                android:layout_toRightOf="@id/imgComic"
+                android:layout_below="@+id/evaluate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:text="Alashaki"
+                android:layout_below="@+id/imgComic"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:textSize="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                />
+
+        </RelativeLayout>
+        <TextView
+            android:layout_below="@+id/header"
+            android:text="The Taliban is a religious group in Afghanistan. It is very violent. In February, the US and the Taliban sign a peace deal.
+    The Taliban says that the US and the Afghan government do not keep the deal. Taliban does not attack Afghan police and soldiers. However, the US attacks Afghan people.
+    The US military spokesman says that it is not true. The US helps people. The US does not break the peace deal. The spokesman says that Taliban must stop fighting. It is important to fight with the coronavirus now. The coronavirus is spreading across Afghanistan."
+            android:id="@+id/textContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textSize="20dp"
+            />
+
+    </RelativeLayout>
+</ScrollView>

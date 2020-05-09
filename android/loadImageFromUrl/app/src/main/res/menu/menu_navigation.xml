@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:checkableBehavior="all" >
+        <item
+            android:id="@+id/itTrangChu"
+            android:title="Trang chủ"
+            android:checked="true"
+            />
+        <item
+            android:id="@+id/itThucDon"
+            android:title="Thực đơn"
+
+            />
+        <item
+            android:id="@+id/itNhanVien"
+            android:title="Nhân viên"
+            />
+        <item
+            android:id="@+id/itThongKe"
+            android:title="Thống kê"
+
+
+            />
+        <item
+            android:id="@+id/itSetting"
+            android:title="Cài đặt"
+
+            />
+
+    </group>
+
+</menu>
