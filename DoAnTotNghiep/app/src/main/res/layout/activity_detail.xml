@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".DetailActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#161616">
+            <include layout="@layout/toolbar"/>
+            <ViewFlipper
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/viewFilper"
+                ></ViewFlipper>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Loại:"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"
+                        android:textColor="#ff9700" />
+                    <TextView
+                        android:id="@+id/txtType"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rau ăn lá"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tên:"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"
+                        android:textColor="#ff9700" />
+                    <TextView
+                        android:id="@+id/txtNameDetail"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Củ cải"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giá (kg):"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"
+                        android:textColor="#ff9700" />
+                    <TextView
+                        android:id="@+id/txtCost"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="20.000đ"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nhà cung cấp giống:"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"
+                        android:textColor="#ff9700" />
+                    <TextView
+                        android:id="@+id/txtProvider"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Đặng Trương Sinh"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Địa điểm cung cấp:"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"
+                        android:textColor="#ff9700" />
+                    <TextView
+                        android:id="@+id/txtLocationProvider"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="China"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ngày chọn giống:"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"
+                        android:textColor="#ff9700" />
+                    <TextView
+                        android:id="@+id/txtDatePick"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="30-03-2020"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ảnh giống:"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/roboto_bolditalic"
+                    android:textColor="#ff9700" />
+                <ImageView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/giong"
+                    android:scaleType="fitXY"
+                    />
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Người trồng:"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"
+                        android:textColor="#ff9700" />
+                    <TextView
+                        android:id="@+id/txtUserCreated"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bắc"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Địa điểm trồng:"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"
+                        android:textColor="#ff9700" />
+                    <TextView
+                        android:id="@+id/txtLocationCreate"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Hồ Chí Minh"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ngày trồng:"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"
+                        android:textColor="#ff9700" />
+                    <TextView
+                        android:id="@+id/txtDateCreated"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="31-03-2020"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ngày thu hoạch:"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"
+                        android:textColor="#ff9700" />
+                    <TextView
+                        android:id="@+id/txtDateDelete"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="04-04-2020"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số lượng (kg):"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"
+                        android:textColor="#ff9700" />
+                    <TextView
+                        android:id="@+id/txtNumber"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="10"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_bolditalic"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nhiệt độ, độ ẩm:"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/roboto_bolditalic"
+                    android:textColor="#ff9700" />
+
+            </LinearLayout>
+    </LinearLayout>
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:id="@+id/idChart"
+                />
+
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>
