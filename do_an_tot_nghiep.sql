@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2020 at 07:16 AM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.7
+-- Generation Time: May 21, 2020 at 03:41 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -106,12 +105,28 @@ INSERT INTO `rau` (`id`, `name`, `nha_cung_cap`, `image_giong`, `ngay_trong`, `d
 
 CREATE TABLE `thong_so_moi_truong` (
   `id` int(11) NOT NULL,
-  `nhiet_do` int(11) DEFAULT NULL,
+  `nhiet_do` float DEFAULT NULL,
   `do_am` int(11) DEFAULT NULL,
   `time` time DEFAULT NULL,
   `rau_id` int(11) NOT NULL,
+  `day` date DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `thong_so_moi_truong`
+--
+
+INSERT INTO `thong_so_moi_truong` (`id`, `nhiet_do`, `do_am`, `time`, `rau_id`, `day`, `created_at`) VALUES
+(1, 31.9, 85, NULL, 0, '2020-05-20', '2020-05-20 14:34:47'),
+(2, 31.9, 85, NULL, 0, '2020-05-20', '2020-05-20 14:38:57'),
+(3, 31.9, 85, NULL, 0, '2020-05-20', '2020-05-20 14:39:32'),
+(4, 31.9, 85, NULL, 0, '2020-05-21', '2020-05-20 14:40:38'),
+(5, 32, 33, NULL, 0, '2020-05-21', '2020-05-20 14:41:17'),
+(6, 32.1, 84, NULL, 0, '2020-05-22', '2020-05-20 14:56:26'),
+(7, 32.1, 84, NULL, 0, '2020-05-22', '2020-05-20 14:59:28'),
+(8, 31.9, 85, NULL, 0, '2020-05-20', '2020-05-20 15:03:29'),
+(9, 31.9, 85, NULL, 0, '2020-05-23', '2020-05-20 15:06:58');
 
 -- --------------------------------------------------------
 
@@ -201,7 +216,7 @@ ALTER TABLE `rau`
 -- AUTO_INCREMENT for table `thong_so_moi_truong`
 --
 ALTER TABLE `thong_so_moi_truong`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `thu_hoach`
