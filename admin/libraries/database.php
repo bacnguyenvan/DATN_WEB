@@ -201,6 +201,14 @@
 			return mysqli_affected_rows($this->connect); //mysqli_affected_rows : hàm trả về số dòng bị ảnh hưởng bởi câu truy vấn
 		}
 
+		public function getLatest($table)
+		{
+			$sql = "SELECT * FROM $table ORDER BY created_at DESC LIMIT 1";
+			$result = mysqli_query($this->connect,$sql) or die('query fail');
+			return mysqli_fetch_assoc($result);
+
+		}
+
 	}
 
 

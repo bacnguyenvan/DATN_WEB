@@ -28,6 +28,7 @@
             'number' => postInput('number'),
             'nha_cung_cap' => postInput('nha_cung_cap'),
             'ngay_trong' => postInput('ngay_trong'),
+            'updated_at' => date("d-m-Y H:i:s"),
 
         ];
 
@@ -72,6 +73,7 @@
             } 
             
             $id_update_rau = $db->updateDB("rau",$data,['id'=>$id]);
+            echo($id_update_rau); die();
             if($id_update_rau){
                
                 move_uploaded_file($file_tmp_image_giong, $part.$file_name_image_giong);
@@ -340,7 +342,7 @@
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Nhà sản xuất</label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập nhà sản xuất" name='nha_san_xuat' value="<?php echo $product_thu_hoach['nha_san_xuat']?>">
+                                  <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập nhà sản xuất" name='nha_san_xuat' value="<?php echo (!empty($product_thu_hoach))? $product_thu_hoach['nha_san_xuat']: "" ?>">
 
                                   
                                 </div>
@@ -349,7 +351,7 @@
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Ngày thu hoạch </label>
                                 <div class="col-sm-10">
-                                  <input type="date" class="form-control" id="inputEmail3" placeholder="Nhập ngày thu hoạch" name='ngay_thu_hoach' value="<?php echo $product_thu_hoach['ngay_thu_hoach']?>">
+                                  <input type="date" class="form-control" id="inputEmail3" placeholder="Nhập ngày thu hoạch" name='ngay_thu_hoach' value="<?php echo (!empty($product_thu_hoach))?$product_thu_hoach['ngay_thu_hoach']:"" ?>">
                                 
                                   
                                 </div>
@@ -357,7 +359,7 @@
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Sản lượng </label>
                                 <div class="col-sm-10">
-                                  <input type="number" min="0"  class="form-control" id="inputEmail3" placeholder="Nhập sản lượng " name='san_luong' value="<?php echo $product_thu_hoach['san_luong']?>">
+                                  <input type="number" min="0"  class="form-control" id="inputEmail3" placeholder="Nhập sản lượng " name='san_luong' value="<?php echo (!empty($product_thu_hoach))? $product_thu_hoach['san_luong']:"" ?>">
 
                                   
                                 </div>
@@ -366,7 +368,7 @@
                             <div class="form-group row">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">Giá bán </label>
                                 <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập giá bán " name='gia_ban' value="<?php echo $product_thu_hoach['gia_ban']?>">
+                                  <input type="text" class="form-control" id="inputEmail3" placeholder="Nhập giá bán " name='gia_ban' value="<?php echo (!empty($product_thu_hoach))? $product_thu_hoach['gia_ban']:""?>">
 
                                   
                                 </div>
@@ -378,7 +380,7 @@
                                 <div class="col-sm-4">
                                     <input type="file" name="image_thu_hoach" class="form-control">
                                     <?php if(!empty($product_thu_hoach['image_thu_hoach'])){ ?>
-                                    <img alt="" src="../public/uploads/thu_hoach/<?php echo $product_thu_hoach['image_thu_hoach']?>" width="100px" height="100px">   
+                                    <img alt="" src="../public/uploads/thu_hoach/<?php echo (!empty($product_thu_hoach))?$product_thu_hoach['image_thu_hoach']:""?>" width="100px" height="100px">   
                                     <?php } ?> 
                                 </div>
                             </div>
@@ -392,7 +394,6 @@
                                     <img alt="" src="../public/uploads/qrcode/<?php echo $product_thu_hoach['qrcode']?>" width="100px" height="100px">   
                                     <?php } ?> 
                                 </div>
-
                                 <div class="col-sm-4">
                                     <a href="generateQRcode.php?text_qrcode=<?php echo $id ?>" class="btn btn-danger">Tạo QRCode ( nếu chưa có hình QRCode) <i class="fa fa-arrow-right"></i></a>
                                 </div>

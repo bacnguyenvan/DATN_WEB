@@ -4,32 +4,22 @@
    require_once"../libraries/function.php";
    $db = new database;
 
-   $categories = $db->fetchAll_condition('category'," deleted_at=0");
-   $list_id = $list_name = [];
-   foreach($categories as $item){
-        array_push($list_id,$item['id']);
-        array_push($list_name,$item['name']);
-   }
+   $sql_temperature = "SELECT  day as '0',ROUND(avg(nhiet_do),2) as '1' FROM thong_so_moi_truong GROUP BY day ";
+    $data_tem = $db->fetchSql($sql_temperature);
 
+    // $sql_soil_moist = "SELECT ROUND(avg(do_am),2) as value_soil_moist_avg, day FROM thong_so_moi_truong GROUP BY day ";
+    
+    // $data['soil_moist'] = $db->fetchSql($sql_soil_moist);
 
-   $count_product = array_map(function($id){
-        global $db;
-        $sql = "SELECT SUM(number) as count FROM products WHERE category_id = $id ";
-        $result = $db->fetchSql_no_array($sql);
-        return $result;
-   },$list_id);
+ 
 
-   
-   $count_product = array_column($count_product, 'count');
-
-    function run($a, $b)
-    {
-        return [$a,(int)$b];
+    for($i = 0 ; $i < count($data_tem) ; $i++){
+        $data_tem[$i][1] = (int)$data_tem[$i][1];
     }
 
-    $data = array_map('run', $list_name , $count_product);
-
-    $data = json_encode($data);
+    $data = json_encode($data_tem);
+    // _debug($data);
+    // die();
 
 ?>
 
@@ -43,7 +33,7 @@
 
         <style type="text/css">
             .highcharts-credits{
-                display: none;
+                /*display: none;*/
             }
         </style>
     </head>
@@ -91,19 +81,12 @@ Highcharts.chart('container', {
         enabled: false
     },
     tooltip: {
-        pointFormat: 'tổng sản phẩm : <b>{point.y:.1f} máy</b>'
+        pointFormat: 'Nhiệt độ trung bình : <b>{point.y:.1f} ° C</b>'
     },
     series: [{
         name: 'Population',
-        // data: [
-        //     ['Shanghai', 24.2],
-        //     ['Beijing', 20.8],
-        //     ['Karachi', 14.9],
-        //     ['Shenzhen', 13.7],
-        //     ['Guangzhou', 13.1]
-            
-        // ],
-        data : <?php echo $data ?>,
+        data: <?php echo $data ?>,
+       
 
         dataLabels: {
             enabled: true,
