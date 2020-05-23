@@ -28,7 +28,7 @@
             'number' => postInput('number'),
             'nha_cung_cap' => postInput('nha_cung_cap'),
             'ngay_trong' => postInput('ngay_trong'),
-            'updated_at' => date("d-m-Y H:i:s"),
+            'updated_at' => date('Y-m-d H:i:s'),
 
         ];
 
@@ -73,7 +73,6 @@
             } 
             
             $id_update_rau = $db->updateDB("rau",$data,['id'=>$id]);
-            echo($id_update_rau); die();
             if($id_update_rau){
                
                 move_uploaded_file($file_tmp_image_giong, $part.$file_name_image_giong);
