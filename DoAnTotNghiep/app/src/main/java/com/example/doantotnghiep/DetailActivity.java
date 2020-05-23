@@ -3,10 +3,8 @@ package com.example.doantotnghiep;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
@@ -47,13 +45,13 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-        viewFlipper = findViewById(R.id.viewFilper);
-        barChart = findViewById(R.id.idChart);
+//        viewFlipper = findViewById(R.id.viewFilper);
+//        barChart = findViewById(R.id.idChart);
         drawChart();
         addImageViewFilper();
         viewFlipper.setOnClickListener(this);
     }
-// ,
+
     private void drawChart() {
         BarDataSet barTemperature = new BarDataSet(dataTemperature(),"Nhiệt độ");
         barTemperature.setValueTextSize(10);
@@ -144,6 +142,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        I
+
     }
 }

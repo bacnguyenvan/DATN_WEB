@@ -1,7 +1,6 @@
 package com.example.doantotnghiep.adapter;
 
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,9 +19,9 @@ public class VegetableHolder extends RecyclerView.ViewHolder implements  View.On
     public VegetableHolder(@NonNull View itemView) {
         super(itemView);
         txtName = itemView.findViewById(R.id.txtName);
-        txtOrigin = itemView.findViewById(R.id.txtOrigin);
-        txtCost = itemView.findViewById(R.id.txtCost);
-        imgImage = itemView.findViewById(R.id.imgImage);
+        txtOrigin = itemView.findViewById(R.id.txtProvideLocation);
+        txtCost = itemView.findViewById(R.id.txtPrice);
+        imgImage = itemView.findViewById(R.id.imgHarvestImage);
         itemView.setOnClickListener(this);
     }
 

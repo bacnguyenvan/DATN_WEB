@@ -52,7 +52,7 @@
                         android:textColor="#6A90B5"
                         android:textSize="20dp" />
                     <TextView
-                        android:id="@+id/txtOrigin"
+                        android:id="@+id/txtProvideLocation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
@@ -76,7 +76,7 @@
                         android:textSize="20dp" />
 
                     <TextView
-                        android:id="@+id/txtCost"
+                        android:id="@+id/txtPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="20.000đ"
@@ -93,7 +93,7 @@
                 android:layout_weight="3">
                 <de.hdodenhof.circleimageview.CircleImageView
                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/imgImage"
+                    android:id="@+id/imgHarvestImage"
                     android:layout_width="match_parent"
                     android:layout_height="115dp"
                     android:src="@drawable/cachua"

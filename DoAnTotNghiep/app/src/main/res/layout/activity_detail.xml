@@ -21,33 +21,14 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:id="@+id/viewFilper"
+                android:id="@+id/viewFilperHarvestImage"
                 ></ViewFlipper>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="10dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Loại:"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_bolditalic"
-                        android:textColor="#ff9700" />
-                    <TextView
-                        android:id="@+id/txtType"
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Rau ăn lá"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_bolditalic"/>
-                </LinearLayout>
+                =
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -80,7 +61,7 @@
                         android:fontFamily="@font/roboto_bolditalic"
                         android:textColor="#ff9700" />
                     <TextView
-                        android:id="@+id/txtCost"
+                        android:id="@+id/txtDetailPrice"
                         android:layout_marginLeft="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -140,7 +121,7 @@
                         android:fontFamily="@font/roboto_bolditalic"
                         android:textColor="#ff9700" />
                     <TextView
-                        android:id="@+id/txtDatePick"
+                        android:id="@+id/txtDateSelectBreed"
                         android:layout_marginLeft="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -156,6 +137,7 @@
                     android:fontFamily="@font/roboto_bolditalic"
                     android:textColor="#ff9700" />
                 <ImageView
+                    android:id="@+id/breedImage"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
@@ -175,7 +157,7 @@
                         android:fontFamily="@font/roboto_bolditalic"
                         android:textColor="#ff9700" />
                     <TextView
-                        android:id="@+id/txtUserCreated"
+                        android:id="@+id/txtGrower"
                         android:layout_marginLeft="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -196,7 +178,7 @@
                         android:fontFamily="@font/roboto_bolditalic"
                         android:textColor="#ff9700" />
                     <TextView
-                        android:id="@+id/txtLocationCreate"
+                        android:id="@+id/txtPlantLocation"
                         android:layout_marginLeft="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -217,7 +199,7 @@
                         android:fontFamily="@font/roboto_bolditalic"
                         android:textColor="#ff9700" />
                     <TextView
-                        android:id="@+id/txtDateCreated"
+                        android:id="@+id/txtPlantDate"
                         android:layout_marginLeft="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -237,7 +219,7 @@
                         android:fontFamily="@font/roboto_bolditalic"
                         android:textColor="#ff9700" />
                     <TextView
-                        android:id="@+id/txtDateDelete"
+                        android:id="@+id/txtHarvestDate"
                         android:layout_marginLeft="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -279,7 +261,7 @@
             <com.github.mikephil.charting.charts.BarChart
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:id="@+id/idChart"
+                android:id="@+id/chartClimate"
                 />
 
     </LinearLayout>
