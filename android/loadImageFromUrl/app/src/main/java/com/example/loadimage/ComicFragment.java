@@ -2,6 +2,7 @@ package com.example.loadimage;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class ComicFragment extends Fragment {
         adapter = new ComicAdapter(R.layout.row_comics,getContext(),comicArrayList);
         lv.setAdapter(adapter);
 
-        String url = "http://192.168.1.99/do_an_tot_nghiep/admin/api/listVegetable.php";
+        String url = "http://192.168.1.107/do_an_tot_nghiep/admin/api/listVegetable.php";
         ReadJson(url);
 
 
@@ -73,6 +74,7 @@ public class ComicFragment extends Fragment {
                         for(int i = 0 ; i< response.length() ; i++){
                             try {
                                 JSONObject obj = response.getJSONObject(i);
+                                Log.d("tagg",obj.toString());
                                 comicArrayList.add(new Comic(
                                         obj.getString("image_giong"),
                                         obj.getString("name"),

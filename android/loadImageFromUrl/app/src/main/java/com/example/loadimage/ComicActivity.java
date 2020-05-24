@@ -24,7 +24,7 @@ public class ComicActivity extends AppCompatActivity {
         tvauthor.setText(intent.getStringExtra("author"));
         tvcategory.setText(intent.getStringExtra("category"));
 //        imgComic.setImageResource(R.drawable.ic_launcher_background);
-        String url = "http://192.168.144.2/do_an_tot_nghiep/admin/public/uploads/rau/";
+        String url = "http://172.17.191.209/do_an_tot_nghiep/admin/public/uploads/rau/";
         Picasso.with(this).load(url+intent.getStringExtra("imgComic")).into(imgComic);
 
     }

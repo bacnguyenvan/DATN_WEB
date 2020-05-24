@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 21, 2020 at 03:41 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.4
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 24, 2020 lúc 06:41 PM
+-- Phiên bản máy phục vụ: 10.4.11-MariaDB
+-- Phiên bản PHP: 7.2.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `do_an_tot_nghiep`
+-- Cơ sở dữ liệu: `do_an_tot_nghiep`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `accounts`
+-- Cấu trúc bảng cho bảng `accounts`
 --
 
 CREATE TABLE `accounts` (
@@ -37,7 +38,7 @@ CREATE TABLE `accounts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dieu_kien_canh_tac`
+-- Cấu trúc bảng cho bảng `dieu_kien_canh_tac`
 --
 
 CREATE TABLE `dieu_kien_canh_tac` (
@@ -50,7 +51,7 @@ CREATE TABLE `dieu_kien_canh_tac` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `dieu_kien_canh_tac`
+-- Đang đổ dữ liệu cho bảng `dieu_kien_canh_tac`
 --
 
 INSERT INTO `dieu_kien_canh_tac` (`id`, `rau_id`, `ten_dieu_kien`, `dieu_kien`, `deleted_at`, `created_at`) VALUES
@@ -63,7 +64,7 @@ INSERT INTO `dieu_kien_canh_tac` (`id`, `rau_id`, `ten_dieu_kien`, `dieu_kien`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rau`
+-- Cấu trúc bảng cho bảng `rau`
 --
 
 CREATE TABLE `rau` (
@@ -75,32 +76,33 @@ CREATE TABLE `rau` (
   `deleted_at` int(11) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `price` int(11) DEFAULT NULL,
-  `number` int(11) DEFAULT NULL
+  `number` int(11) DEFAULT NULL,
+  `provide_location` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `rau`
+-- Đang đổ dữ liệu cho bảng `rau`
 --
 
-INSERT INTO `rau` (`id`, `name`, `nha_cung_cap`, `image_giong`, `ngay_trong`, `deleted_at`, `created_at`, `price`, `number`) VALUES
-(1, 'Rau muống', 'Văn phòng phẩm ABC , 123 võ văn Ngân', 'rau_muong.jpg', '2020-03-29', 0, '2020-03-29 09:24:09', 4000, 2),
-(2, 'Rau mướp', 'Phong lan 23 Lê lợi', 'muop.png', '2020-03-30', 0, '2020-03-29 09:44:05', 10000, 1),
-(3, 'Rau hoa chuối', 'Nhà a 46 Phạm Văn Đồng', 'hoa_chuoi.jpg', '2020-03-30', 0, '2020-03-29 09:47:10', 12000, 2),
-(4, 'aaaa', '122 ', 'adven.jpg', '2020-03-30', 0, '2020-03-29 09:49:31', 3500000, 1),
-(5, 'âq23', '122 aaa', 'zi_dat.png', '2020-03-30', 1, '2020-03-29 09:50:05', 3000000, 1),
-(6, '12A', 'Văn phòng phẩm ABC , 123 võ văn Ngân', '9_ro.jpg', '2020-02-02', 0, '2020-03-29 09:50:43', 3500000, 1),
-(7, 'rau dền', '123 nguyễn trãi', '3_chuon.jpg', '2020-03-30', 0, '2020-03-29 10:17:48', 100, 2),
-(8, 'rau bông súng', '123 Phong phong', 'icon1.png', '2020-04-02', 0, '2020-04-02 01:31:03', 12000, 1),
-(9, 'Rau giá vàng', 'Lê lai 22', 'background_img.jpg', '2020-04-05', 0, '2020-04-04 03:16:40', 1001, 12),
-(10, 'Rau hoa sen', 'Văn Bá', 'icon2.png', '2020-04-04', 0, '2020-04-04 12:03:21', 900000, 1),
-(11, 'Rau xxx', 'Nguyễn Văn Bắc', 'icon3.png', '2020-04-04', 0, '2020-04-04 13:51:42', 1000, 3),
-(12, 'Rau sen', 'Đồng tháp', 'vietnam.png', '2020-04-11', 0, '2020-04-11 04:38:27', 25000, 10),
-(13, 'Rau bông lan 12', 'Tú bà hàng xanh', 'adven.jpg', '2020-04-20', 0, '2020-04-18 03:55:41', 13000, 127);
+INSERT INTO `rau` (`id`, `name`, `nha_cung_cap`, `image_giong`, `ngay_trong`, `deleted_at`, `created_at`, `price`, `number`, `provide_location`) VALUES
+(1, 'Rau muống', 'Văn phòng phẩm ABC , 123 võ văn Ngân', 'rau_muong.jpg', '2020-03-29', 0, '2020-03-29 09:24:09', 4000, 2, NULL),
+(2, 'Rau mướp', 'Phong lan 23 Lê lợi', 'muop.png', '2020-03-30', 0, '2020-03-29 09:44:05', 10000, 1, NULL),
+(3, 'Rau hoa chuối', 'Nhà a 46 Phạm Văn Đồng', 'hoa_chuoi.jpg', '2020-03-30', 0, '2020-03-29 09:47:10', 12000, 2, NULL),
+(4, 'aaaa', '122 ', 'adven.jpg', '2020-03-30', 0, '2020-03-29 09:49:31', 3500000, 1, NULL),
+(5, 'âq23', '122 aaa', 'zi_dat.png', '2020-03-30', 1, '2020-03-29 09:50:05', 3000000, 1, NULL),
+(6, '12A', 'Văn phòng phẩm ABC , 123 võ văn Ngân', '9_ro.jpg', '2020-02-02', 0, '2020-03-29 09:50:43', 3500000, 1, NULL),
+(7, 'rau dền', '123 nguyễn trãi', '3_chuon.jpg', '2020-03-30', 0, '2020-03-29 10:17:48', 100, 2, NULL),
+(8, 'rau bông súng', '123 Phong phong', 'icon1.png', '2020-04-02', 0, '2020-04-02 01:31:03', 12000, 1, NULL),
+(9, 'Rau giá vàng', 'Lê lai 22', 'background_img.jpg', '2020-04-05', 0, '2020-04-04 03:16:40', 1001, 12, NULL),
+(10, 'Rau hoa sen', 'Văn Bá', 'icon2.png', '2020-04-04', 0, '2020-04-04 12:03:21', 900000, 1, NULL),
+(11, 'Rau xxx', 'Nguyễn Văn Bắc', 'icon3.png', '2020-04-04', 0, '2020-04-04 13:51:42', 1000, 3, NULL),
+(12, 'Rau sen', 'Đồng tháp', 'vietnam.png', '2020-04-11', 0, '2020-04-11 04:38:27', 25000, 10, NULL),
+(13, 'Rau bông lan 12', 'Tú bà hàng xanh', 'adven.jpg', '2020-04-20', 0, '2020-04-18 03:55:41', 13000, 127, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thong_so_moi_truong`
+-- Cấu trúc bảng cho bảng `thong_so_moi_truong`
 --
 
 CREATE TABLE `thong_so_moi_truong` (
@@ -114,7 +116,7 @@ CREATE TABLE `thong_so_moi_truong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `thong_so_moi_truong`
+-- Đang đổ dữ liệu cho bảng `thong_so_moi_truong`
 --
 
 INSERT INTO `thong_so_moi_truong` (`id`, `nhiet_do`, `do_am`, `time`, `rau_id`, `day`, `created_at`) VALUES
@@ -131,7 +133,7 @@ INSERT INTO `thong_so_moi_truong` (`id`, `nhiet_do`, `do_am`, `time`, `rau_id`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thu_hoach`
+-- Cấu trúc bảng cho bảng `thu_hoach`
 --
 
 CREATE TABLE `thu_hoach` (
@@ -144,82 +146,83 @@ CREATE TABLE `thu_hoach` (
   `image_thu_hoach` varchar(200) DEFAULT NULL,
   `qrcode` varchar(200) DEFAULT NULL,
   `deleted_at` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `plant_location` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `thu_hoach`
+-- Đang đổ dữ liệu cho bảng `thu_hoach`
 --
 
-INSERT INTO `thu_hoach` (`id`, `rau_id`, `nha_san_xuat`, `ngay_thu_hoach`, `san_luong`, `gia_ban`, `image_thu_hoach`, `qrcode`, `deleted_at`, `created_at`) VALUES
-(3, 12, NULL, NULL, NULL, NULL, '', 'generate.php_text_qrcode=12.png', 0, '2020-04-11 04:48:59'),
-(4, 13, 'Trần văn A', '2020-04-20', 12, '1000/1 kí', 'background_img.jpg', 'bt_adapter.png', 0, '2020-04-18 03:58:59'),
-(5, 9, 'lê thị bé', '2020-04-21', 12, '1000/1 kí', 'hinh-nen-dep-cho-may-tinh-nature-wallpapers-nature-wallpaper-latest-beautiful-wallpapers.jpg', 'city1.jpg', 0, '2020-04-19 05:12:29');
+INSERT INTO `thu_hoach` (`id`, `rau_id`, `nha_san_xuat`, `ngay_thu_hoach`, `san_luong`, `gia_ban`, `image_thu_hoach`, `qrcode`, `deleted_at`, `created_at`, `plant_location`) VALUES
+(3, 12, NULL, NULL, NULL, NULL, '', 'generate.php_text_qrcode=12.png', 0, '2020-04-11 04:48:59', NULL),
+(4, 13, 'Trần văn A', '2020-04-20', 12, '1000/1 kí', 'hinh-nen-dep-cho-may-tinh-nature-wallpapers-nature-wallpaper-latest-beautiful-wallpapers.jpg', 'bt_adapter.png', 0, '2020-04-18 03:58:59', NULL),
+(5, 9, 'lê thị bé', '2020-04-21', 12, '1000/1 kí', 'hinh-nen-dep-cho-may-tinh-nature-wallpapers-nature-wallpaper-latest-beautiful-wallpapers.jpg', 'city1.jpg', 0, '2020-04-19 05:12:29', NULL);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `accounts`
+-- Chỉ mục cho bảng `accounts`
 --
 ALTER TABLE `accounts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `dieu_kien_canh_tac`
+-- Chỉ mục cho bảng `dieu_kien_canh_tac`
 --
 ALTER TABLE `dieu_kien_canh_tac`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `rau`
+-- Chỉ mục cho bảng `rau`
 --
 ALTER TABLE `rau`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `thong_so_moi_truong`
+-- Chỉ mục cho bảng `thong_so_moi_truong`
 --
 ALTER TABLE `thong_so_moi_truong`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `thu_hoach`
+-- Chỉ mục cho bảng `thu_hoach`
 --
 ALTER TABLE `thu_hoach`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `accounts`
+-- AUTO_INCREMENT cho bảng `accounts`
 --
 ALTER TABLE `accounts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `dieu_kien_canh_tac`
+-- AUTO_INCREMENT cho bảng `dieu_kien_canh_tac`
 --
 ALTER TABLE `dieu_kien_canh_tac`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `rau`
+-- AUTO_INCREMENT cho bảng `rau`
 --
 ALTER TABLE `rau`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `thong_so_moi_truong`
+-- AUTO_INCREMENT cho bảng `thong_so_moi_truong`
 --
 ALTER TABLE `thong_so_moi_truong`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `thu_hoach`
+-- AUTO_INCREMENT cho bảng `thu_hoach`
 --
 ALTER TABLE `thu_hoach`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;

@@ -1,0 +1,60 @@
+
+.container_progressbar_rau {
+  width: 70%;
+  margin: 50px auto; 
+}
+.progressbar_rau {
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+}
+.progressbar_rau li {
+  list-style-type: none;
+  width: 32%;
+  float: left;
+  font-size: 12px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  color: #7d7d7d;
+}
+.progressbar_rau li:before {
+  width: 50px;
+  height: 50px;
+  content: counter(step);
+  counter-increment: step;
+  line-height: 50px;
+  border: 2px solid #7d7d7d;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: white;
+  font-weight: bold;
+  font-size: 20px;
+  position: relative;
+  z-index: 2
+}
+.progressbar_rau li:after {
+  width: 100%;
+  height: 2px;
+  content: '';
+  position: absolute;
+  background-color: #7d7d7d;
+  top: 25px;
+  left: -50%;
+  z-index: 1;
+}
+.progressbar_rau li:first-child:after {
+  content: none;
+}
+.progressbar_rau li.active_progressbar {
+  color: green;
+}
+.progressbar_rau li.active_progressbar:before {
+  border-color: #55b776;
+  background: #93e8cd;
+}
+.progressbar_rau li.active_progressbar + li:after {
+  background-color: #55b776;
+}
