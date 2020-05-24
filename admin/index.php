@@ -45,7 +45,7 @@
                     </p>
                     <p style="font-size: 25px">
                       <!-- <i class="fa fa-tint" style="font-size:3.0rem;color:#75e095;"></i> -->
-                      <span class="dht-labels">Độ ẩm không khí : </span>
+                      <span class="dht-labels">Độ ẩm đất : </span>
                       <span id="HumidityValue"><?php if(!empty($getSensorValue)) echo $getSensorValue['do_am']; else echo "0"; ?></span>
                       <sup class="units">%</sup>
                     </p>

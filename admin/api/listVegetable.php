@@ -7,6 +7,7 @@
             LEFT JOIN thu_hoach ON rau.id = thu_hoach.rau_id WHERE rau.deleted_at = 0"; 
    
     $lists = $db->fetchSql($sql);
+    if(empty($lists)) redirectStyle('404.php');
     echo json_encode($lists);
 
 ?>

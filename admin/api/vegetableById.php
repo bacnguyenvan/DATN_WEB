@@ -4,6 +4,8 @@
     
     $id = (int)getInput('id');
     $productById = $db->fetchID('rau',$id); 
+
+    if(empty($productById)) redirectStyle('404.php');
     $product_thu_hoach = $db->fetchOne('thu_hoach'," deleted_at = 0 AND rau_id = $id ");
 
     // dieu kien canh tac
