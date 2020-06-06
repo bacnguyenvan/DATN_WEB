@@ -3,11 +3,8 @@
     
     
     // $sql = "SELECT * FROM rau WHERE rau.deleted_at='0' ";
-   	$sql = "SELECT rau.*,thu_hoach.nha_san_xuat,thu_hoach.ngay_thu_hoach,thu_hoach.san_luong,thu_hoach.image_thu_hoach as hinh_anh_thu_hoach,thu_hoach.qrcode FROM rau
-            LEFT JOIN thu_hoach ON rau.id = thu_hoach.rau_id WHERE rau.deleted_at = 0"; 
-   
+   	$sql = "SELECT rau.id,rau.name,rau.provide_location as provideLocation,rau.price, thu_hoach.image_thu_hoach as harvestImage FROM rau  JOIN thu_hoach ON rau.id = thu_hoach.rau_id WHERE rau.deleted_at = 0"; 
     $lists = $db->fetchSql($sql);
-    if(empty($lists)) redirectStyle('404.php');
     echo json_encode($lists);
 
 ?>

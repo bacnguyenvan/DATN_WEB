@@ -142,12 +142,22 @@
 
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Ảnh QRCode</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" id="img_qrcode">
                                     <?php if(!empty($thu_hoach_By_rau_id['qrcode'])){ ?>
                                     <img alt="" src="../public/uploads/qrcode/<?php echo $thu_hoach_By_rau_id['qrcode']?>" width="100px" height="100px">   
                                     <?php } ?>  
                                 </div>
                             </div>
+                            <?php if(!empty($thu_hoach_By_rau_id['qrcode'])){ ?>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">In ảnh QRCode</label>
+                                <div class="col-sm-10">
+                                    
+                                        <button id="print_qrcode" class="btn btn-primary" style="padding:10px 40px;">In</button>
+                                    
+                                </div>
+                            </div>
+                            <?php } ?>  
 
                         </form>
                     </div>
