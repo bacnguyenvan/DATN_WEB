@@ -45,4 +45,14 @@ $(document).ready(function(){
 			$('.save_condition').prop("disabled",true);
 		}
 	})
+
+	$("#print_qrcode").click(function(e){
+
+		e.preventDefault();
+		$("#img_qrcode img").css({"width":"400","height":"400"});
+		window.document.body.innerHTML = $("#img_qrcode")[0].outerHTML;
+		window.print();
+		location.reload();		
+
+	})
 })
