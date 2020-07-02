@@ -1,6 +1,7 @@
 package com.example.doantotnghiep.utils;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class CommonActivityUtil extends AppCompatActivity {
                 Toast.makeText(this, "Not found!", Toast.LENGTH_LONG).show();
             } else {
                 Intent intent = new Intent(this, DetailActivity.class);
+                Log.d("mytag", result.getContents());
                 intent.putExtra(DetailActivity.ID_ITEM, result.getContents());
                 startActivity(intent);
             }
