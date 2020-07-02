@@ -5,5 +5,5 @@ import com.example.doantotnghiep.model.Vegetable;
 import java.util.List;
 
 public interface ListenerDataInterface {
-    void notifyDataGetSuccess(List<? extends Vegetable> obj);
+    void notifyDataGetSuccess(List<? extends Object> obj);
 }

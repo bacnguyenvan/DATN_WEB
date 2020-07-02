@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/title1Toolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_bolditalic"
@@ -22,6 +23,7 @@
                 android:textColor="#ff9800"
                 android:textSize="30dp" />
             <TextView
+                android:id="@+id/title2Toolbar"
                 android:textColor="#fff"
                 android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"

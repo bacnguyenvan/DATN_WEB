@@ -9,12 +9,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.doantotnghiep.model.Farm;
 import com.example.doantotnghiep.model.Vegetable;
 import com.example.doantotnghiep.pattern.ListenerDataInterface;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ import java.util.List;
 
 public class RestApiUtil {
 
-    public static <T extends Vegetable> void getAllData(String url, final Context context, final ListenerDataInterface listenerData, final Class T) {
+    public static <T> void getAllData(String url, final Context context, final ListenerDataInterface listenerData, final Class T) {
         RequestQueue queue = Volley.newRequestQueue(context);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -31,9 +33,15 @@ public class RestApiUtil {
                     public void onResponse(JSONArray response) {
                         ObjectMapper mapper1 = new ObjectMapper();
                         try {
-                            List<T> lists = mapper1.readValue(response.toString(), new TypeReference<List<T>>() {});
+                            List<T> lists = new ArrayList<>();
+                            for(int i = 0; i < response.length(); i++){
+                               T t = (T) mapper1.readValue(response.get(i).toString(), T);
+                               lists.add(t);
+                            }
                             listenerData.notifyDataGetSuccess(lists);
                         } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }

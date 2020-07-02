@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DoAnTotNghiep</string>
+    <string name="map_api_key">AIzaSyBVxBEmc_5mZ_TOCZFgIfvIqTjf1mWHqio</string>
 </resources>

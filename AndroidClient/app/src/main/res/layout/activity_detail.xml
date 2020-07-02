@@ -20,7 +20,7 @@
             <ViewFlipper
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="250dp"
                 android:id="@+id/viewFilperHarvestImage"
                 ></ViewFlipper>
             <LinearLayout
@@ -70,123 +70,6 @@
                         android:fontFamily="@font/roboto_bolditalic"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nhà cung cấp giống:"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_bolditalic"
-                        android:textColor="#ff9700" />
-                    <TextView
-                        android:id="@+id/txtProvider"
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Đặng Trương Sinh"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_bolditalic"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Địa điểm cung cấp:"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_bolditalic"
-                        android:textColor="#ff9700" />
-                    <TextView
-                        android:id="@+id/txtLocationProvider"
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="China"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_bolditalic"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ngày chọn giống:"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_bolditalic"
-                        android:textColor="#ff9700" />
-                    <TextView
-                        android:id="@+id/txtDateSelectBreed"
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="30-03-2020"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_bolditalic"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ảnh giống:"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/roboto_bolditalic"
-                    android:textColor="#ff9700" />
-                <ImageView
-                    android:id="@+id/breedImage"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:src="@drawable/giong"
-                    android:scaleType="fitXY"
-                    />
-                <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Người trồng:"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_bolditalic"
-                        android:textColor="#ff9700" />
-                    <TextView
-                        android:id="@+id/txtGrower"
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Bắc"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_bolditalic"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Địa điểm trồng:"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_bolditalic"
-                        android:textColor="#ff9700" />
-                    <TextView
-                        android:id="@+id/txtPlantLocation"
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Hồ Chí Minh"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/roboto_bolditalic"/>
-                </LinearLayout>
-                <LinearLayout
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -228,41 +111,66 @@
                         android:fontFamily="@font/roboto_bolditalic"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/linearProcedure"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/roboto_bolditalic"
+                            android:textColor="#ff9700"
+                            android:text="Quy trình:"
+                            />
+                        <TextView
+                            android:id="@+id/txtNoneProcedure"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/roboto_bolditalic"
+                            android:text=" Chủ vườn chưa khởi tạo"
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Số lượng (kg):"
+                        android:text="Địa điểm trang trại:"
                         android:textSize="16sp"
                         android:fontFamily="@font/roboto_bolditalic"
-                        android:textColor="#ff9700" />
+                        android:textColor="#ff9700"/>
                     <TextView
-                        android:id="@+id/txtNumber"
+                        android:id="@+id/txtNodata"
                         android:layout_marginLeft="5dp"
+                        android:visibility="invisible"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="10"
+                        android:text="Chủ trang trại chưa khởi tạo"
                         android:textSize="16sp"
                         android:fontFamily="@font/roboto_bolditalic"/>
                 </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nhiệt độ, độ ẩm:"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/roboto_bolditalic"
-                    android:textColor="#ff9700" />
-
             </LinearLayout>
+
     </LinearLayout>
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:id="@+id/chartClimate"
-                />
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:id="@+id/google_map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            ></fragment>
+
 
     </LinearLayout>
 

@@ -1,20 +1,9 @@
 package com.example.doantotnghiep.model;
 
 public class Vegetable {
-    public String id;
+    public String ma_cay_trong;
     public String name;
-    public String provideLocation;
     public String price;
-    public String harvestImage;
+    public String img_thu_hoach;
 
-    @Override
-    public String toString() {
-        return "Vegetable{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", provideLocation='" + provideLocation + '\'' +
-                ", price='" + price + '\'' +
-                ", harvestImage='" + harvestImage + '\'' +
-                '}';
-    }
 }

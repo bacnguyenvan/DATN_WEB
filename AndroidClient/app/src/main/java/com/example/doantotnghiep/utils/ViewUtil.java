@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.ViewFlipper;
 
 import com.example.doantotnghiep.DetailActivity;
-import com.example.doantotnghiep.constant.AppConstant;
+import com.example.doantotnghiep.constant.UrlConstant;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class ViewUtil {
         for(String name : nameImages){
             ImageView imageView = new ImageView(DetailActivity.context);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            Picasso.with(context).load(AppConstant.urlImage + name)
+            Picasso.with(context).load(UrlConstant.urlImageVegetale + name)
                     .into(imageView);
             list.add(imageView);
         }

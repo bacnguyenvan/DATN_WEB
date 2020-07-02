@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doantotnghiep.DetailActivity;
 import com.example.doantotnghiep.R;
-import com.example.doantotnghiep.constant.AppConstant;
+import com.example.doantotnghiep.constant.UrlConstant;
 import com.example.doantotnghiep.model.Vegetable;
 import com.squareup.picasso.Picasso;
 
@@ -35,6 +35,7 @@ public class VegetableAdapter extends RecyclerView.Adapter<VegetableHolder>  {
 
     @Override
     public void onBindViewHolder(@NonNull final VegetableHolder holder, int position) {
+        View view;
         int color = Color.parseColor("#fdb501");
         if(position % 4 == 1)
             color  = Color.parseColor("#FF5832");
@@ -42,14 +43,13 @@ public class VegetableAdapter extends RecyclerView.Adapter<VegetableHolder>  {
             color = Color.parseColor("#37AF57");
         else if(position % 4 == 3)
             color = Color.parseColor("#FF3F51B5");
-        holder.idItem = vegetableList.get(position).id;
+        holder.idItem = vegetableList.get(position).ma_cay_trong;
         holder.txtName.setTextColor(color);
         holder.txtName.setText(vegetableList.get(position).name);
-        holder.txtProvideLocation.setText(vegetableList.get(position).provideLocation);
         holder.txtPrice.setText(vegetableList.get(position).price);
-        String harvestImage = vegetableList.get(position).harvestImage;
+        String harvestImage = vegetableList.get(position).img_thu_hoach;
         if(harvestImage != null && harvestImage.length() > 0)
-            Picasso.with(c).load(AppConstant.urlImage + harvestImage).into(holder.imgHarvestImage);
+            Picasso.with(c).load(UrlConstant.urlImageVegetale + harvestImage).into(holder.imgHarvestImage);
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClickListener(View v, int position) {
